@@ -9,6 +9,8 @@
 4.Run php artisan key:generate
     
 5.Run php artisan migrate
+
+6.Run php artisan storage:link    
     
 6.Run php artisan serve
     
