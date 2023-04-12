@@ -12,9 +12,9 @@
 
 6.Run php artisan storage:link    
     
-6.Run php artisan serve
+7.Run php artisan serve
     
-7.Go to link localhost:8000
+8.Go to link localhost:8000
 
 <hr>
 
