@@ -23,5 +23,5 @@
 <script type="text/javascript" language="javascript" 
     src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.print.min.js"></script>
 <script type="text/javascript" language="javascript" 
-    src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.colVis.min.js"></script
+    src="https://cdn.datatables.net/buttons/2.3.6/js/buttons.colVis.min.js"></script>
         

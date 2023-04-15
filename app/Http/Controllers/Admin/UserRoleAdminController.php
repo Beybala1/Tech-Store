@@ -15,7 +15,8 @@ class UserRoleAdminController extends Controller
      */
     public function index()
     {
-        return view('backend.user_and_roles');
+        $users = User::latest()->get();
+        return view('backend.user_and_roles',get_defined_vars());
     }
 
     /**
@@ -23,7 +24,7 @@ class UserRoleAdminController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.create.user_and_roles_create');
     }
 
     /**
@@ -31,15 +32,28 @@ class UserRoleAdminController extends Controller
      */
     public function store(UserStoreRoleRequest $request)
     {
-        //
+        try {
+            $request->validated();
+            User::create([
+                'name'=>$request->name,
+                'email'=>$request->email,
+                'password'=>bcrypt($request->password),
+                'isAdmin'=>1,
+            ]);
+            return redirect(route('user-and-roles.index'))
+                ->with('success', 'Əməliyyat uğurla həyata keçirildi');
+        } catch (\Exception $e) {
+            return back()->with('warning', 'Əməliyyat uğursuz oldu');
+        }
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(User $user)
     {
-        //
+        $user = User::findOrFail($user);
+        return view('backend.show.user_and_roles_show',get_defined_vars());
     }
 
     /**
@@ -47,22 +61,17 @@ class UserRoleAdminController extends Controller
      */
     public function edit(User $user)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UserUpdateRoleRequest $request, User $user)
-    {
-        //
+        $user = User::findOrFail($user);
+        return view('backend.show.user_and_roles_show',get_defined_vars());
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
-        //
+        User::findOrFail($id)->delete();
+        return back()
+            ->with('success', 'Əməliyyat uğurla həyata keçirildi');
     }
 }

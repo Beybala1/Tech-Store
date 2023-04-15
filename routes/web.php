@@ -16,7 +16,10 @@ use Illuminate\Support\Facades\Route;
 */
 Route::group(['prefix'=>'admin'], function(){
     Route::get('/',[DashboardAdmindController::class, 'index'])->name('dashboard.index');
-    Route::resource('/user-and-roles', UserRoleAdminController::class)->names('user-and-roles');
+    Route::resource('/user-and-roles', UserRoleAdminController::class)->except(['edit','update'])->names('user-and-roles');
 });
+
+
+
 
 

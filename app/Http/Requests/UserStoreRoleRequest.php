@@ -11,7 +11,7 @@ class UserStoreRoleRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,18 @@ class UserStoreRoleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'name'=>'required|string|max:255',
+            'email'=>'required|string|email|unique:users',
+            'password'=>'required|string|confirmed|min:6',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'email.unique:users'=>'Bu email mövcuddur',
+            'password.min:6'=>'Parol minimum 6 simvol olmalıdır',
+            'password.confirmed'=>'Parol ilə təkrar parol uyğun deyil',
         ];
     }
 }
