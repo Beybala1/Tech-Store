@@ -13,13 +13,11 @@
                 <div class="d-flex flex-sm-column flex-row align-items-start justify-content-between">
                     <div class="card-title">
                         <h5 class="text-nowrap mb-2">İstifadəçilər</h5>
-                        <h4 class="badge bg-label-warning rounded-pill">Year
-                            2021</h4>
                     </div>
                     <div class="mt-sm-auto">
-                        <small class="text-success text-nowrap fw-semibold"><i class='bx bx-chevron-up'></i>
-                            68.2%</small>
-                        <h3 class="mb-0">$84,686k</h3>
+                        <h4 class="text-success text-nowrap fw-semibold">
+                            {{ $user }}
+                        </h4>
                     </div>
                 </div>
                 <div id="profileReportChart"></div>

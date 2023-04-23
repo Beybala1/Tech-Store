@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboardAdmindController;
 use App\Http\Controllers\Admin\UserRoleAdminController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,12 +15,10 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::group(['prefix'=>'admin'], function(){
+Route::group(['prefix'=>'admin','middleware'=>['auth','isAdmin']], function(){
     Route::get('/',[DashboardAdmindController::class, 'index'])->name('dashboard.index');
     Route::resource('/user-and-roles', UserRoleAdminController::class)->except(['edit','update'])->names('user-and-roles');
-});
+}); 
 
-
-
-
+Auth::routes();
 

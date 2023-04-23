@@ -4,9 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserStoreRoleRequest;
-use App\Http\Requests\UserUpdateRoleRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
 
 class UserRoleAdminController extends Controller
 {

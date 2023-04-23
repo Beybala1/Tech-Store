@@ -8,7 +8,7 @@
     
 4.Run php artisan key:generate
     
-5.Run php artisan migrate
+5.Run php artisan migrate --seed
 
 6.Run php artisan storage:link    
     
@@ -19,4 +19,10 @@
 <hr>
 
 Packages:<br>
+1.https://realrashid.github.io/sweet-alert/install
+2.https://github.com/joedixon/laravel-translation
+3.https://spatie.be/docs/laravel-permission/v5/introduction
+4.https://github.com/mcamara/laravel-localization
+5.https://github.com/laravel/ui
+6.https://github.com/barryvdh/laravel-debugbar
 
