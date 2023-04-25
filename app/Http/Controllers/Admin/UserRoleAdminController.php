@@ -30,13 +30,7 @@ class UserRoleAdminController extends Controller
      */
     public function store(UserStoreRoleRequest $request)
     {
-        dd(User::create([
-            'name'=>$request->name,
-            'email'=>$request->email,
-            'password'=>bcrypt($request->password),
-            'isAdmin'=>1,
-        ]));
-        /* try {
+        try {
             $request->validated();
             User::create([
                 'name'=>$request->name,
@@ -48,7 +42,7 @@ class UserRoleAdminController extends Controller
                 ->with('success', 'Əməliyyat uğurla həyata keçirildi');
         } catch (\Exception $e) {
             return back()->with('warning', 'Əməliyyat uğursuz oldu');
-        } */
+        }
     }
 
     /**
