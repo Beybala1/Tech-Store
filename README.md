@@ -19,10 +19,10 @@
 <hr>
 
 Packages:<br>
-1.https://realrashid.github.io/sweet-alert/install
-2.https://github.com/joedixon/laravel-translation
-3.https://spatie.be/docs/laravel-permission/v5/introduction
-4.https://github.com/mcamara/laravel-localization
-5.https://github.com/laravel/ui
-6.https://github.com/barryvdh/laravel-debugbar
+1.https://realrashid.github.io/sweet-alert/install<br>
+2.https://github.com/joedixon/laravel-translation<br>
+3.https://spatie.be/docs/laravel-permission/v5/introduction<br>
+4.https://github.com/mcamara/laravel-localization<br>
+5.https://github.com/laravel/ui<br>
+6.https://github.com/barryvdh/laravel-debugbar<br>
 
