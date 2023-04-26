@@ -13,7 +13,7 @@ class UserRoleAdminController extends Controller
      */
     public function index()
     {
-        $users = User::latest()->get();
+        $users = User::where('isAdmin',1)->latest()->get();
         return view('backend.user_and_roles',get_defined_vars());
     }
 
