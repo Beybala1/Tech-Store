@@ -19,7 +19,7 @@
 <hr>
 
 Packages:<br>
-1.https://realrashid.github.io/sweet-alert/install<br>
+1.https://realrashid.github.io/sweet-alert/<br>
 2.https://github.com/joedixon/laravel-translation<br>
 3.https://spatie.be/docs/laravel-permission/v5/introduction<br>
 4.https://github.com/mcamara/laravel-localization<br>
