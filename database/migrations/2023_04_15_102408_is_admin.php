@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->boolean('isAdmin')->default(0);
-            $table->string('image')->default('backend/assets/img/avatars/avatar.png');
+            $table->longText('image')->default('backend/assets/img/avatars/avatar.png');
         });
     }
 

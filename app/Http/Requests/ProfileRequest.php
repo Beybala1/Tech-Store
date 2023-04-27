@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\CheckpPassword;
 use Illuminate\Foundation\Http\FormRequest;
 
 class ProfileRequest extends FormRequest
@@ -25,6 +26,8 @@ class ProfileRequest extends FormRequest
             'user_name'=>'required|string|max:255',
             'email'=>'required|email|string',
             'current_password'=>'required|string',
+            'image'=>'image|mimes:jpeg,png,jpg,gif',            
+            'current_password'=>['required','string', new CheckpPassword],
         ];
     }
 }

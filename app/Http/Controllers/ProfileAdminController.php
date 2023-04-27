@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileRequest;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-
+use App\Models\User;
+use Illuminate\Support\Facades\File;
 class ProfileAdminController extends Controller
 {
     public function index()
@@ -15,9 +14,27 @@ class ProfileAdminController extends Controller
 
     public function update(ProfileRequest $request)
     {
-        if(Hash::check($request->current_password, auth()->user()->password)){
-            echo'1';
+        $user = User::find(auth()->id());
+
+        if ($request->filled('password')) {
+            $request->validate([
+                'password' => 'confirmed|min:6',
+            ]);
+            $user->password = bcrypt($request->password);
         }
-        echo '0';
+
+        if ($request->hasFile('image')) {
+            $image = upload('profile', $request->file('image'));
+            File::delete($user->image);
+        } else{
+            $image = $user->image;
+        }
+
+        $user->name = $request->user_name;
+        $user->email = $request->email;
+        $user->image = $image;
+        $user->save();
+
+        return back()->with('success', 'Əməliyyat uğurla həyata keçirildi');
     }
 }
