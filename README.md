@@ -25,8 +25,6 @@ Packages:<br>
 4.https://github.com/mcamara/laravel-localization<br>
 5.https://github.com/laravel/ui<br>
 6.https://github.com/barryvdh/laravel-debugbar<br>
-<<<<<<< HEAD
 7.https://github.com/Intervention/image<br>
-=======
->>>>>>> 37828346452b6eb59368428a61c15e7574d9c4ff
+
 
