@@ -8,26 +8,17 @@ use App\Models\User;
 
 class UserRoleAdminController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $users = User::where('isAdmin',1)->latest()->get();
-        return view('backend.user_and_roles',get_defined_vars());
+        return view('backend.user-and-roles.index',get_defined_vars());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        return view('backend.create.user_and_roles_create');
+        return view('backend.user-and-roles.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
     public function store(UserStoreRoleRequest $request)
     {
         try {
@@ -45,27 +36,12 @@ class UserRoleAdminController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(User $user)
+    public function show($id)
     {
-        $user = User::findOrFail($user);
-        return view('backend.show.user_and_roles_show',get_defined_vars());
+        $user = User::findOrFail($id);
+        return view('backend.user-and-roles.show',get_defined_vars());
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(User $user)
-    {
-        $user = User::findOrFail($user);
-        return view('backend.show.user_and_roles_show',get_defined_vars());
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy($id)
     {
         User::findOrFail($id)->delete();
