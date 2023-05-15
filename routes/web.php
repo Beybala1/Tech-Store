@@ -20,6 +20,7 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','isAdmin']], function(){
     Route::get('/',[DashboardAdmindController::class, 'index'])->name('dashboard.index');
     Route::resource('/user-and-roles', UserRoleAdminController::class)
         ->except(['edit','update'])->names('user-and-roles');
+    Route::post('/storeRole',[UserRoleAdminController::class, 'storeRole'])->name('storeRole');
     Route::get('/profile',[ProfileAdminController::class, 'index'])->name('profile.index');
     Route::post('/profile',[ProfileAdminController::class, 'update'])->name('profile.update');
 }); 

@@ -44,10 +44,9 @@
                             </div>
                         </td>
                         <td>
-                            test
-                            {{--  @foreach ($user->getRoleNames() as $role)
+                            @foreach ($user->getRoleNames() as $role)
                                 {{ $role.',' }}
-                            @endforeach --}}
+                            @endforeach
                         </td>
                         <td>{{ $user->created_at }}</td>
                         <td>

@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\UserStoreRoleRequest;
 use App\Models\User;
+use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
 class UserRoleAdminController extends Controller
 {
@@ -47,5 +49,18 @@ class UserRoleAdminController extends Controller
         User::findOrFail($id)->delete();
         return back()
             ->with('success', 'Əməliyyat uğurla həyata keçirildi');
+    }
+
+    public function storeRole(Request $request)
+    {
+        try {
+            $user = User::find($request->id);   
+            $role = Role::find($request->roles);
+            $user->syncRoles($role);
+            return redirect(route('user-and-roles.index'))  
+                ->with('success', 'Əməliyyat uğurla həyata keçirildi');
+        } catch (\Exception $e) {
+            return back()->with('warning', 'Əməliyyat uğursuz oldu');
+        }
     }
 }
