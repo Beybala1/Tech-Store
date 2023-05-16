@@ -26,4 +26,8 @@ Packages:<br>
 5.https://github.com/laravel/ui<br>
 6.https://github.com/barryvdh/laravel-debugbar<br>
 7.https://github.com/Intervention/image<br>
+<<<<<<< HEAD
+=======
+
+>>>>>>> 9eaadbc16a18a743ea2aec51869ac871c8ca3678
 

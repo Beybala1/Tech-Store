@@ -79,7 +79,7 @@
                     </div>
                     <div class="mt-2">
                         <button type="submit" class="btn btn-primary me-2">Yadda saxla</button>
-                        <a href="{{ route('profile.index') }}" 
+                        <a href="{{ route('dashboard.index') }}" 
                             class="btn btn-label-secondary">
                             Ləğv et
                         </a>

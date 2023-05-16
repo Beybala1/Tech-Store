@@ -2,7 +2,7 @@
 
 @section('content')
 @section('title')
-    <title>İstifadəçilər və icazələr</title>
+    <title>@lang('user')</title>
 @endsection
 <div class="card">
     <h5 class="card-header">İstifadəçilər və icazələr</h5>

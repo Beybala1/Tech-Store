@@ -12,7 +12,7 @@
             <div class="d-flex justify-content-between flex-sm-row flex-column gap-3">
                 <div class="d-flex flex-sm-column flex-row align-items-start justify-content-between">
                     <div class="card-title">
-                        <h5 class="text-nowrap mb-2">İstifadəçilər</h5>
+                        <h5 class="text-nowrap mb-2">@lang('messages.users')</h5>
                     </div>
                     <div class="mt-sm-auto">
                         <h4 class="text-success text-nowrap fw-semibold">

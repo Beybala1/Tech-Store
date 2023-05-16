@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DashboardAdmindController;
 use App\Http\Controllers\Admin\UserRoleAdminController;
 use App\Http\Controllers\ProfileAdminController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
@@ -23,6 +24,11 @@ Route::group(['prefix'=>'admin','middleware'=>['auth','isAdmin']], function(){
     Route::post('/storeRole',[UserRoleAdminController::class, 'storeRole'])->name('storeRole');
     Route::get('/profile',[ProfileAdminController::class, 'index'])->name('profile.index');
     Route::post('/profile',[ProfileAdminController::class, 'update'])->name('profile.update');
+
+    Route::get('/clear', function () {
+        Artisan::call('optimize:clear');
+        dd("Cache cleared");
+    });
 }); 
 
 Auth::routes();
