@@ -12,12 +12,14 @@ class UserRoleAdminController extends Controller
 {
     public function index()
     {
+        admin_abort();
         $users = User::where('isAdmin',1)->latest()->get();
         return view('backend.user-and-roles.index',get_defined_vars());
     }
 
     public function create()
     {
+        admin_abort();
         return view('backend.user-and-roles.create');
     }
 
@@ -40,6 +42,7 @@ class UserRoleAdminController extends Controller
 
     public function show($id)
     {
+        admin_abort();  
         $user = User::findOrFail($id);
         return view('backend.user-and-roles.show',get_defined_vars());
     }

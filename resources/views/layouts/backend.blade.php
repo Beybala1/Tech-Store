@@ -102,19 +102,27 @@
                             <div data-i18n="İdarə paneli">@lang('messages.dashboard')</div>
                         </a>
                     </li>
-                    <li class="menu-item {{ request()->routeIs(['user-and-roles.index','user-and-roles.create','user-and-roles.show','user-and-roles.store'/* ,'permission.storeRole' */]) ? 'menu active' : ''}}">
-                        <a href="{{ route('user-and-roles.index') }}" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-user"></i>
-                            <div data-i18n="İstifadəçilər və icazələr">@lang('messages.users_and_roles')</div>
+                    <li class="menu-item {{ request()->routeIs(['blog.index','blog.create','blog.show','blog.edit']) ? 'active' : ''}}">
+                        <a href="{{ route('blog.index') }}" class="menu-link">
+                            <i class="menu-icon tf-icons bx bx-spreadsheet"></i>
+                            <div data-i18n="İdarə paneli">@lang('messages.blog')</div>
                         </a>
                     </li>
+                    @role('admin')
+                        <li class="menu-item {{ request()->routeIs(['user-and-roles.index','user-and-roles.create','user-and-roles.show','user-and-roles.store']) ? 'menu active' : ''}}">
+                            <a href="{{ route('user-and-roles.index') }}" class="menu-link">
+                                <i class="menu-icon tf-icons bx bx-user"></i>
+                                <div data-i18n="İstifadəçilər və icazələr">@lang('messages.users_and_roles')</div>
+                            </a>
+                        </li>
+                    @endrole
                 </ul>
             </aside>
             <div class="layout-page">
                 <!-- Navbar -->
                 <nav class="layout-navbar container-xxl navbar navbar-expand-xl navbar-detached align-items-center bg-navbar-theme"
                     id="layout-navbar">
-                    <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0   d-xl-none ">
+                    <div class="layout-menu-toggle navbar-nav align-items-xl-center me-3 me-xl-0 d-xl-none ">
                         <a class="nav-item nav-link px-0 me-xl-4" href="javascript:void(0)">
                             <i class="bx bx-menu bx-sm"></i>
                         </a>
@@ -125,32 +133,17 @@
                             <li class="nav-item dropdown-language dropdown me-2 me-xl-0">
                                 <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);"
                                     data-bs-toggle="dropdown">
-                                    <i class='fi fi-us fis rounded-circle fs-3 me-1'></i>
+                                    <i class='fi fi-{{ app()->getLocale() }} fis rounded-circle fs-3 me-1'></i>
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end">
                                     <li>
-                                        <a class="dropdown-item" href="javascript:void(0);" data-language="en">
-                                            <i class="fi fi-us fis rounded-circle fs-4 me-1"></i>
-                                            <span class="align-middle">English</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="javascript:void(0);" data-language="fr">
-                                            <i class="fi fi-fr fis rounded-circle fs-4 me-1"></i>
-                                            <span class="align-middle">France</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="javascript:void(0);" data-language="de">
-                                            <i class="fi fi-de fis rounded-circle fs-4 me-1"></i>
-                                            <span class="align-middle">German</span>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="javascript:void(0);" data-language="pt">
-                                            <i class="fi fi-pt fis rounded-circle fs-4 me-1"></i>
-                                            <span class="align-middle">Portuguese</span>
-                                        </a>
+                                        @foreach (config('app.locales') as $key => $lang)
+                                            <a class="dropdown-item" href="{{ LaravelLocalization::getLocalizedURL($key) }}" 
+                                                data-language="{{ $key }}">
+                                                <i class="fi fi-{{ $key }} fis rounded-circle fs-4 me-1"></i>
+                                                <span class="align-middle">{{ $lang }}</span>
+                                            </a>
+                                        @endforeach
                                     </li>
                                 </ul>
                             </li>
@@ -174,7 +167,7 @@
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end">
                                     <li>
-                                        <a class="dropdown-item" href="pages-account-settings-account.html">
+                                        <a class="dropdown-item" href="#">
                                             <div class="d-flex">
                                                 <div class="flex-shrink-0 me-3">
                                                     <div class="avatar avatar-online">

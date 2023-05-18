@@ -2,10 +2,10 @@
 
 @section('content')
 @section('title')
-    <title>@lang('user')</title>
+    <title>@lang('messages.users_and_roles')</title>
 @endsection
 <div class="card">
-    <h5 class="card-header">İstifadəçilər və icazələr</h5>
+    <h5 class="card-header">@lang('messages.users_and_roles')</h5>
     <div class="container">
         <form action="{{ route('user-and-roles.create') }}" method="get">
             <button class="btn btn-secondary create-new btn-primary mb-3" tabindex="0"><span><i class="bx bx-plus me-sm-1"></i> <span class="d-none d-sm-inline-block">Əlavə et</span></span></button>
@@ -15,10 +15,10 @@
                 <thead>
                     <tr class="text-nowrap">
                         <th>#</th>
-                        <th>İstifadəçi</th>
-                        <th>İcazə</th>
-                        <th>Tarix</th>
-                        <th>Əməliyyatlar</th>
+                        <th>@lang('messages.users')</th>
+                        <th>@lang('messages.permissions')</th>
+                        <th>@lang('messages.date')</th>
+                        <th>@lang('messages.actions')</th>
                     </tr>
                 </thead>
                 <tbody>

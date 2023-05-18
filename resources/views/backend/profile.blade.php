@@ -3,11 +3,11 @@
 @section('content')
 
 @section('title')
-    <title>Profilim</title>
+    <title>@lang('messages.myProfile')</title>
 @endsection
 
 <h4 class="fw-bold py-3 mb-4">
-    <span class="text-muted fw-light">Profilim /</span> {{ auth()->user()->name }}
+    <span class="text-muted fw-light">@lang('messages.myProfile') /</span> {{ auth()->user()->name }}
 </h4>
 
 <div class="row">
@@ -34,54 +34,49 @@
                                 width="100" id="uploadedAvatar" />
                             <div class="button-wrapper">
                                 <label for="upload" class="btn btn-primary me-2 mb-4" tabindex="0">
-                                    <span class="d-none d-sm-block">Şəkil yüklə</span>
+                                    <span class="d-none d-sm-block">@lang('messages.upload')</span>
                                     <i class="bx bx-upload d-block d-sm-none"></i>
                                     <input type="file" name="image" id="upload" class="account-file-input" hidden
                                         accept="image/png, image/jpeg" />
                                 </label>
-                                <button type="button" class="btn btn-label-secondary account-image-reset mb-4">
-                                    <i class="bx bx-reset d-block d-sm-none"></i>
-                                    <span class="d-none d-sm-block">Resetlə</span>
-                                </button>
                             </div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="mb-3 col-md-6">
-                            <label for="user_name" class="form-label">İstifadəçi adı</label>
+                            <label for="user_name" class="form-label">@lang('messages.userName')</label>
                             <input name="user_name" value="{{ auth()->user()->name }}" class="form-control" 
-                                type="text" id="user_name" placeholder="İsitfadəçi adı"
+                                type="text" id="user_name" placeholder="@lang('messages.userName')"
                                 autofocus required />
                         </div>
                         <div class="mb-3 col-md-6">
-                            <label for="email" class="form-label">E-mail</label>
+                            <label for="email" class="form-label">@lang('messages.email')</label>
                             <input name="email" value="{{ auth()->user()->email }}"  class="form-control" type="text" 
-                                id="email"  placeholder="E-mail"
-                                placeholder="john.doe@example.com" required/>
+                                id="email"  placeholder="@lang('messages.email')" required/>
                         </div>
                         <div class="mb-3 col-md-6">
-                            <label for="current_password" class="form-label">Cari Parol</label>
+                            <label for="current_password" class="form-label">@lang('messages.myPassword')</label>
                             <input name="current_password" class="form-control" type="password"
                                 id="current_password" placeholder="............"
                                 required/>
                         </div>
                         <div class="mb-3 col-md-6">
-                            <label for="password" class="form-label">Yeni Parol</label>
+                            <label for="password" class="form-label">@lang('messages.newPassword')</label>
                             <input name="password" class="form-control" type="password" 
                                 id="password" placeholder="............" />
                         </div>
                         <div class="mb-3 col-md-6">
-                            <label for="password_confirmation" class="form-label">Təkrar Parol</label>
+                            <label for="password_confirmation" class="form-label">@lang('messages.confirmPassword')</label>
                             <input name="password_confirmation" class="form-control" 
                                 type="password" id="password_confirmation" 
                                 placeholder="............" />
                         </div>
                     </div>
                     <div class="mt-2">
-                        <button type="submit" class="btn btn-primary me-2">Yadda saxla</button>
+                        <button type="submit" class="btn btn-primary me-2">@lang('messages.save')</button>
                         <a href="{{ route('dashboard.index') }}" 
                             class="btn btn-label-secondary">
-                            Ləğv et
+                            @lang('messages.cancel')
                         </a>
                     </div>
                 </form>

@@ -6,6 +6,7 @@
     "license": "MIT",
     "require": {
         "php": "^8.1",
+        "astrotomic/laravel-translatable": "^11.12",
         "guzzlehttp/guzzle": "^7.2",
         "intervention/image": "^2.7",
         "joedixon/laravel-translation": "^2.2",
@@ -34,7 +35,7 @@
             "Database\\Seeders\\": "database/seeders/"
         },
         "files": [
-            "app/helpers.php"
+            "app/Helpers.php"
         ]
     },
     "autoload-dev": {
