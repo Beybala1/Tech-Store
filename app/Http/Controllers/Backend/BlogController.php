@@ -6,63 +6,68 @@ use App\Models\Blog;
 use App\Http\Requests\StoreBlogRequest;
 use App\Http\Requests\UpdateBlogRequest;
 use App\Http\Controllers\Controller;
+use App\Models\BlogTranslation;
+use Illuminate\Http\Request;
 
 class BlogController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
         $blogs = Blog::latest()->get();
         return view('backend.blog.index', get_defined_vars());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
         return view('backend.blog.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreBlogRequest $request)
+    public function store(Request $request)
     {
-        //
+        try {
+            if($request->hasFile('image')){
+                $blog = Blog::create([
+                    'author'=>$request->author,
+                    'image'=>upload('blogs', $request->file('image')),
+                ]);
+                foreach (config('app.locales') as $key=>$lang) {
+                    $translation = new BlogTranslation();
+                    $translation->title = $request->title[$key];
+                    $translation->content = $request->content[$key];
+                    $translation->slug = $request->slug[$key];
+                    $translation->locale = $key;
+                    $translation->blog_id = $blog->id;
+                    $translation->save();
+                }
+            }
+            return to_route('blog.index')
+                ->with('success', __('messages.success'));
+        } catch (\Exception $eh) {
+            return back()->with('warning', __('messages.fail'));
+        }
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Blog $blog)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Blog $blog)
     {
-        //
+        return view('backend.blog.edit', get_defined_vars());
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
     public function update(UpdateBlogRequest $request, Blog $blog)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
     public function destroy(Blog $blog)
     {
-        //
+        $imagePath = public_path($blog->image);
+
+        if (file_exists($imagePath)) {
+            unlink($imagePath);
+        }
+
+        $blog->delete();
+        return to_route('blog.index')
+            ->with('success', __('messages.success'));
     }
+
 }

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class BlogTranslation extends Model
 {
-    protected $guarded = [];
+    public $timestamps = false;
 
-    public $timestaps = false;
+    protected $guarded = [];
 }

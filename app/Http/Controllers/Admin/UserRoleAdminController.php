@@ -34,9 +34,9 @@ class UserRoleAdminController extends Controller
                 'isAdmin'=>1,
             ]);
             return redirect(route('user-and-roles.index'))
-                ->with('success', 'Əməliyyat uğurla həyata keçirildi');
+                ->with('success', __('messages.success'));
         } catch (\Exception $e) {
-            return back()->with('warning', 'Əməliyyat uğursuz oldu');
+            return back()->with('warning', __('messages.fail'));
         }
     }
 
@@ -61,9 +61,9 @@ class UserRoleAdminController extends Controller
             $role = Role::find($request->roles);
             $user->syncRoles($role);
             return redirect(route('user-and-roles.index'))  
-                ->with('success', 'Əməliyyat uğurla həyata keçirildi');
+                ->with('success', __('messages.success'));
         } catch (\Exception $e) {
-            return back()->with('warning', 'Əməliyyat uğursuz oldu');
+            return back()->with('warning', __('messages.fail'));
         }
     }
 }

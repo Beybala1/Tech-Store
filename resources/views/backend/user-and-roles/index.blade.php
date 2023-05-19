@@ -8,7 +8,8 @@
     <h5 class="card-header">@lang('messages.users_and_roles')</h5>
     <div class="container">
         <form action="{{ route('user-and-roles.create') }}" method="get">
-            <button class="btn btn-secondary create-new btn-primary mb-3" tabindex="0"><span><i class="bx bx-plus me-sm-1"></i> <span class="d-none d-sm-inline-block">Əlavə et</span></span></button>
+            <button class="btn btn-secondary create-new btn-primary mb-3" tabindex="0"><span><i class="bx bx-plus me-sm-1"></i> 
+                <span class="d-none d-sm-inline-block">@lang('messages.store')</button>
         </form>
         <div class="table-responsive text-nowrap">
             <table id="table" class="table table-striped">

@@ -9,8 +9,9 @@
     <div class="container">
         <form action="{{ route('blog.create') }}" method="get">
             <button class="btn btn-secondary create-new btn-primary mb-3" tabindex="0"><span><i
-                        class="bx bx-plus me-sm-1"></i> <span class="d-none d-sm-inline-block">Əlavə
-                        et</span></span></button>
+                class="bx bx-plus me-sm-1"></i> <span class="d-none d-sm-inline-block">
+                    @lang('messages.store')
+            </button>
         </form>
         <div class="table-responsive text-nowrap">
             <table id="table" class="table table-striped">
@@ -49,13 +50,13 @@
                             <td>{{ $blog->slug }}</td>
                             <td>{{ $blog->created_at }}</td>
                             <td>
-                                <form action="{{ route('blog.destroy', [$blog->id]) }}" method="post">
+                                <form action="{{ route('blog.destroy', $blog->id) }}" method="post">
                                     @csrf
                                     @method('DELETE')
                                     <div class="btn-group">
-                                        <a href="{{ route('blog.show', [$blog->id]) }}" class="btn btn-success"
+                                        <a href="{{ route('blog.edit', $blog->id) }}" class="btn btn-success"
                                             title="İcazə ver">
-                                            <i class="bi bi-person-gear"></i>
+                                            <i class="bi bi-pencil-square"></i>
                                         </a>
                                         <button type="submit" class="btn btn-danger" title="Sil">
                                             <i class="bi bi-x-lg"></i>

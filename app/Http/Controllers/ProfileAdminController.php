@@ -35,6 +35,6 @@ class ProfileAdminController extends Controller
         $user->image = $image;
         $user->save();
 
-        return back()->with('success', 'Əməliyyat uğurla həyata keçirildi');
+        return back()->with('success', '__(messages.success)');
     }
 }

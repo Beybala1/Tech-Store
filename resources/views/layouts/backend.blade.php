@@ -102,7 +102,7 @@
                             <div data-i18n="İdarə paneli">@lang('messages.dashboard')</div>
                         </a>
                     </li>
-                    <li class="menu-item {{ request()->routeIs(['blog.index','blog.create','blog.show','blog.edit']) ? 'active' : ''}}">
+                    <li class="menu-item {{ request()->routeIs(['blog.index','blog.create','blog.edit']) ? 'active' : ''}}">
                         <a href="{{ route('blog.index') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-spreadsheet"></i>
                             <div data-i18n="İdarə paneli">@lang('messages.blog')</div>
