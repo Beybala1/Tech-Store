@@ -20,21 +20,25 @@
                 </ul>
             </div>
         @endif
-        <form action="{{ route('blog.store') }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('blog.update', $blog->id) }}" method="post" enctype="multipart/form-data">
             @csrf
+            @method('PUT')
             <ul class="nav nav-pills nav-justified" id="pills-tab" role="tablist">
                 @foreach (config('app.locales') as $key => $lang)
                     <li class="nav-item" role="presentation">
                         <a class="nav-link {{ $key === app()->getLocale() ? 'active' : '' }}"
-                            id="pills-{{ $key }}-tab" data-bs-toggle="pill" data-bs-target="#pills-{{ $key }}" 
-                            type="button" role="tab" aria-controls="pills-{{ $key }}"
+                            id="pills-{{ $key }}-tab" data-bs-toggle="pill"
+                            data-bs-target="#pills-{{ $key }}" type="button" role="tab"
+                            aria-controls="pills-{{ $key }}"
                             aria-selected="{{ $key === app()->getLocale() ? 'true' : 'false' }}">
                             {{ $lang }}
                         </a>
                     </li>
                 @endforeach
             </ul>
+            
             <div class="tab-content" id="pills-tabContent">
+                <img width="100%" height="300px" src="{{ asset($blog->image) }}" alt="">
                 <div class="mb-3">
                     <label class="form-label" for="basic-default-image">@lang('messages.image')</label>
                     <input type="file" name="image" class="form-control" value="{{ $blog->image }}"
@@ -56,11 +60,10 @@
                                 value="{{ $blog->translate($key)->title }}" id="basic-default-title"
                                 placeholder="@lang('messages.title')" required>
                         </div>
+                          
                         <div class="mb-3">
                             <label class="form-label" for="basic-default-content">@lang('messages.content')</label>
-                            <textarea name="content[{{ $key }}]" class="form-control" cols="20" rows="7">
-                                {{ $blog->translate($key)->content }}
-                            </textarea>
+                            <textarea name="content[{{ $key }}]" class="form-control" cols="10" rows="5">{{ $blog->translate($key)->content }}</textarea>
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="basic-default-slug">@lang('messages.slug')</label>

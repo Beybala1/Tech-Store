@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Models\Blog;
-use App\Http\Requests\StoreBlogRequest;
+use App\Http\Requests\StoreBlogRequest; 
 use App\Http\Requests\UpdateBlogRequest;
 use App\Http\Controllers\Controller;
 use App\Models\BlogTranslation;
@@ -25,12 +25,12 @@ class BlogController extends Controller
     public function store(Request $request)
     {
         try {
-            if($request->hasFile('image')){
+            if ($request->hasFile('image')) {
                 $blog = Blog::create([
-                    'author'=>$request->author,
-                    'image'=>upload('blogs', $request->file('image')),
+                    'author' => $request->author,
+                    'image' => upload('blogs', $request->file('image')),
                 ]);
-                foreach (config('app.locales') as $key=>$lang) {
+                foreach (config('app.locales') as $key => $lang) {
                     $translation = new BlogTranslation();
                     $translation->title = $request->title[$key];
                     $translation->content = $request->content[$key];
@@ -40,8 +40,7 @@ class BlogController extends Controller
                     $translation->save();
                 }
             }
-            return to_route('blog.index')
-                ->with('success', __('messages.success'));
+            return to_route('blog.index')->with('success', __('messages.success'));
         } catch (\Exception $eh) {
             return back()->with('warning', __('messages.fail'));
         }
@@ -52,9 +51,32 @@ class BlogController extends Controller
         return view('backend.blog.edit', get_defined_vars());
     }
 
-    public function update(UpdateBlogRequest $request, Blog $blog)
+    public function update(Request $request, Blog $blog)
     {
-        //
+        try {
+            if ($request->hasFile('image')) {
+                $imagePath = public_path($blog->image);
+                if (file_exists($imagePath)) {
+                    unlink($imagePath);
+                }
+                $blog->image = upload('blogs', $request->file('image'));
+            }
+            $blog->author = $request->author;
+            foreach (config('app.locales') as $key => $lang) {
+                $translationData = [
+                    'title' => $request->title[$key],
+                    'content' => $request->content[$key],
+                    'slug' => $request->slug[$key],
+                    'locale' => $key,
+                ];
+                $blog->translations()->updateOrCreate(['locale' => $key], $translationData);
+            }
+
+            $blog->save();
+            return to_route('blog.index')->with('success', __('messages.success'));
+        } catch (\Exception $eh) {
+            return back()->with('warning', __('messages.fail'));
+        }
     }
 
     public function destroy(Blog $blog)
@@ -66,8 +88,6 @@ class BlogController extends Controller
         }
 
         $blog->delete();
-        return to_route('blog.index')
-            ->with('success', __('messages.success'));
+        return to_route('blog.index')->with('success', __('messages.success'));
     }
-
 }

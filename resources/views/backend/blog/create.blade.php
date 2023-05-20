@@ -35,11 +35,13 @@
                     </li>
                 @endforeach
             </ul>
+            <img id="imagePreview" src="#" alt="Image Preview" style="display: none; max-width: 300px; max-height: 300px;">
             <div class="tab-content" id="pills-tabContent">
+                <input type="file" id="imageInput">
                 <div class="mb-3">
                     <label class="form-label" for="basic-default-image">@lang('messages.image')</label>
                     <input type="file" name="image" value="{{ old('image') }}" class="form-control"
-                        id="basic-default-image" placeholder="@lang('messages.image')" required>
+                        id="imageInput" placeholder="@lang('messages.image')" required>
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="basic-default-author">@lang('messages.author')</label>
@@ -57,7 +59,9 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="basic-default-content">@lang('messages.content')</label>
-                            <textarea name="content[{{ $key }}]" class="form-control" cols="20" rows="7">{{ old('content') }}</textarea>
+                            <textarea name="content[{{ $key }}]" class="form-control" cols="20" rows="7">
+                                {{ old('content') }}
+                            </textarea>
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="basic-default-slug">@lang('messages.slug')</label>
@@ -74,4 +78,34 @@
         </form>
     </div>
 </div>
+<script>
+    // Get references to the input and image elements
+const imageInput = document.getElementById('imageInput');
+const imagePreview = document.getElementById('imagePreview');
+
+// Add an event listener to the input for the image selection
+imageInput.addEventListener('change', function(event) {
+  const file = event.target.files[0];
+
+  // Ensure the file is an image
+  if (file && file.type.startsWith('image/')) {
+    const reader = new FileReader();
+
+    // Set up the FileReader onload event
+    reader.onload = function() {
+      // Set the image source to the FileReader result
+      imagePreview.src = reader.result;
+      imagePreview.style.display = 'block';
+    };
+
+    // Read the file as a data URL
+    reader.readAsDataURL(file);
+  } else {
+    // Clear the image preview if the file is not an image
+    imagePreview.src = '#';
+    imagePreview.style.display = 'none';
+  }
+});
+
+</script>
 @endsection
