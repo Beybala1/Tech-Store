@@ -249,6 +249,7 @@
                 .appendTo('#table_wrapper .col-md-6:eq(0)');
         });
     </script>
+    @stack('scripts')
     <script src="{{ asset('backend/assets/vendor/libs/popper/popper.js')}}"></script>
     <script src="{{ asset('backend/assets/vendor/js/bootstrap.js')}}"></script>
     <script src="{{ asset('backend/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js')}}"></script>

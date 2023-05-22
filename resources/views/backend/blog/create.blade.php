@@ -35,9 +35,9 @@
                     </li>
                 @endforeach
             </ul>
-            <img id="imagePreview" src="#" alt="Image Preview" style="display: none; max-width: 300px; max-height: 300px;">
             <div class="tab-content" id="pills-tabContent">
-                <input type="file" id="imageInput">
+                <img id="imagePreview" src="#" alt="Image Preview"
+                    style="display: none; max-width: 300px; max-height: 300px;">
                 <div class="mb-3">
                     <label class="form-label" for="basic-default-image">@lang('messages.image')</label>
                     <input type="file" name="image" value="{{ old('image') }}" class="form-control"
@@ -50,23 +50,22 @@
                 </div>
                 @foreach (config('app.locales') as $key => $lang)
                     <div class="tab-pane fade {{ $key === app()->getLocale() ? 'show active' : '' }}"
-                        id="pills-{{ $key }}" role="tabpanel" aria-labelledby="pills-{{ $key }}-tab">
+                        id="pills-{{ $key }}" role="tabpanel"
+                        aria-labelledby="pills-{{ $key }}-tab">
                         {{-- Form --}}
                         <div class="mb-3">
                             <label class="form-label" for="basic-default-title">@lang('messages.title')</label>
-                            <input type="text" name="title[{{ $key }}]" value="{{ old('title') }}" class="form-control"
-                                id="basic-default-title" placeholder="@lang('messages.title')" required>
+                            <input type="text" name="title[{{ $key }}]" value="{{ old('title') }}"
+                                class="form-control" id="basic-default-title" placeholder="@lang('messages.title')" required>
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="basic-default-content">@lang('messages.content')</label>
-                            <textarea name="content[{{ $key }}]" class="form-control" cols="20" rows="7">
-                                {{ old('content') }}
-                            </textarea>
+                            <textarea name="content[{{ $key }}]" class="form-control" cols="20" rows="7">{{ old('content') }}</textarea>
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="basic-default-slug">@lang('messages.slug')</label>
-                            <input type="text" name="slug[{{ $key }}]" value="{{ old('slug') }}" class="form-control"
-                                id="basic-default-slug" placeholder="@lang('messages.slug')" required>
+                            <input type="text" name="slug[{{ $key }}]" value="{{ old('slug') }}"
+                                class="form-control" id="basic-default-slug" placeholder="@lang('messages.slug')" required>
                         </div>
                         <div class="pt-2">
                             <button type="submit" class="btn btn-primary me-sm-3 me-1">@lang('messages.store')</button>
@@ -78,34 +77,25 @@
         </form>
     </div>
 </div>
-<script>
-    // Get references to the input and image elements
-const imageInput = document.getElementById('imageInput');
-const imagePreview = document.getElementById('imagePreview');
+@push('scripts')
+    <script>
+        const imageInput = document.getElementById('imageInput');
+        const imagePreview = document.getElementById('imagePreview');
+        imageInput.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file && file.type.startsWith('image/')) {
+                const reader = new FileReader();
+                reader.onload = function() {
+                    imagePreview.src = reader.result;
+                    imagePreview.style.display = 'block';
+                };
+                reader.readAsDataURL(file);
+            } else {
+                imagePreview.src = '#';
+                imagePreview.style.display = 'none';
+            }
+        });
+    </script>
+@endpush
 
-// Add an event listener to the input for the image selection
-imageInput.addEventListener('change', function(event) {
-  const file = event.target.files[0];
-
-  // Ensure the file is an image
-  if (file && file.type.startsWith('image/')) {
-    const reader = new FileReader();
-
-    // Set up the FileReader onload event
-    reader.onload = function() {
-      // Set the image source to the FileReader result
-      imagePreview.src = reader.result;
-      imagePreview.style.display = 'block';
-    };
-
-    // Read the file as a data URL
-    reader.readAsDataURL(file);
-  } else {
-    // Clear the image preview if the file is not an image
-    imagePreview.src = '#';
-    imagePreview.style.display = 'none';
-  }
-});
-
-</script>
 @endsection

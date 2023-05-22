@@ -36,13 +36,13 @@
                     </li>
                 @endforeach
             </ul>
-            
             <div class="tab-content" id="pills-tabContent">
-                <img width="100%" height="300px" src="{{ asset($blog->image) }}" alt="">
+                <img width="100%" height="300px" src="{{ asset($blog->image) }}" id="test" alt="">
+                <div id="imageContainer"></div>
                 <div class="mb-3">
                     <label class="form-label" for="basic-default-image">@lang('messages.image')</label>
                     <input type="file" name="image" class="form-control" value="{{ $blog->image }}"
-                        id="basic-default-image" placeholder="@lang('messages.image')">
+                        id="imageInput" placeholder="@lang('messages.image')">
                 </div>
                 <div class="mb-3">
                     <label class="form-label" for="basic-default-author">@lang('messages.author')</label>
@@ -60,7 +60,7 @@
                                 value="{{ $blog->translate($key)->title }}" id="basic-default-title"
                                 placeholder="@lang('messages.title')" required>
                         </div>
-                          
+
                         <div class="mb-3">
                             <label class="form-label" for="basic-default-content">@lang('messages.content')</label>
                             <textarea name="content[{{ $key }}]" class="form-control" cols="10" rows="5">{{ $blog->translate($key)->content }}</textarea>
@@ -81,4 +81,29 @@
         </form>
     </div>
 </div>
+@push('scripts')
+    <script>
+        const imageInput = document.getElementById('imageInput');
+        const imageContainer = document.getElementById('imageContainer');
+        let previousImage = null; 
+        imageInput.addEventListener('change', function(event) {
+            const file = event.target.files[0];
+            if (file && file.type.startsWith('image/')) {
+                const reader = new FileReader();
+                reader.onload = function() {
+                    document.getElementById("test").style.display = "none";
+                    if (previousImage) {
+
+                        imageContainer.removeChild(previousImage);
+                    }
+                    const image = document.createElement('img');
+                    image.src = reader.result;
+                    previousImage = image; // Set the current image as the previous image
+                    imageContainer.appendChild(image);
+                };
+                reader.readAsDataURL(file);
+            }
+        });
+    </script>
+@endpush
 @endsection
