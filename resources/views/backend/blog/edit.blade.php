@@ -37,7 +37,16 @@
                 @endforeach
             </ul>
             <div class="tab-content" id="pills-tabContent">
-                <img width="100%" height="300px" src="{{ asset($blog->image) }}" id="test" alt="">
+                <div class="card">
+                    <div class="card-body" style="margin-right:52%;">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <img class="rounded me-2" alt="200x200" width="200" id="test"
+                                    src="{{ asset($blog->image) }}" data-holder-rendered="true">
+                            </div>
+                        </div>
+                    </div>
+                </div>
                 <div id="imageContainer"></div>
                 <div class="mb-3">
                     <label class="form-label" for="basic-default-image">@lang('messages.image')</label>
@@ -63,7 +72,7 @@
 
                         <div class="mb-3">
                             <label class="form-label" for="basic-default-content">@lang('messages.content')</label>
-                            <textarea name="content[{{ $key }}]" class="form-control" cols="10" rows="5">{{ $blog->translate($key)->content }}</textarea>
+                            <textarea name="content[{{ $key }}]" class="form-control" cols="20" rows="7" required>{{ $blog->translate($key)->content }}</textarea>
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="basic-default-slug">@lang('messages.slug')</label>
@@ -85,7 +94,7 @@
     <script>
         const imageInput = document.getElementById('imageInput');
         const imageContainer = document.getElementById('imageContainer');
-        let previousImage = null; 
+        let previousImage = null;
         imageInput.addEventListener('change', function(event) {
             const file = event.target.files[0];
             if (file && file.type.startsWith('image/')) {

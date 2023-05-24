@@ -26,6 +26,7 @@ return array (
   'save' => 'Save',
   'store' => 'Store',
   'success' => 'Successfully',
+  'translation' => 'Translations',
   'upload' => 'Upload',
   'user' => 'User',
   'userName' => 'User name',

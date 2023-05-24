@@ -26,6 +26,7 @@ return array (
   'save' => 'Yadda saxla',
   'store' => 'Daxil et',
   'success' => 'Əməliyyat uğurla həyata keçirildi',
+  'translation' => 'Tərcümələr',
   'upload' => 'Yüklə',
   'user' => 'Istifadəçi',
   'userName' => 'Istifadəçi adı',

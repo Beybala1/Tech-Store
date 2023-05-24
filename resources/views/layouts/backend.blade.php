@@ -108,6 +108,12 @@
                             <div data-i18n="İdarə paneli">@lang('messages.blog')</div>
                         </a>
                     </li>
+                    <li class="menu-item">
+                        <a href="{{ asset(config('translation.ui_url')) }}" target="_blank" class="menu-link">
+                            <i style="margin-right:16px;" class="fa-solid fa-globe"></i>
+                            <div data-i18n="İdarə paneli">@lang('messages.translation')</div>
+                        </a>
+                    </li>
                     @role('admin')
                         <li class="menu-item {{ request()->routeIs(['user-and-roles.index','user-and-roles.create','user-and-roles.show','user-and-roles.store']) ? 'menu active' : ''}}">
                             <a href="{{ route('user-and-roles.index') }}" class="menu-link">
