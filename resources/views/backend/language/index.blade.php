@@ -2,12 +2,12 @@
 
 @section('content')
 @section('title')
-    <title>@lang('messages.blog')</title>
+    <title>@lang('messages.language')</title>
 @endsection
 <div class="card">
-    <h5 class="card-header">@lang('messages.blog')</h5>
+    <h5 class="card-header">@lang('messages.language')</h5>
     <div class="container">
-        <form action="{{ route('blog.create') }}" method="get">
+        <form action="{{ route('language.create') }}" method="get">
             <button class="btn btn-secondary create-new btn-primary mb-3" tabindex="0"><span><i
                 class="bx bx-plus me-sm-1"></i> <span class="d-none d-sm-inline-block">
                     @lang('messages.store')
@@ -18,45 +18,40 @@
                 <thead>
                     <tr class="text-nowrap">
                         <th>#</th>
-                        <th>@lang('messages.image')</th>
-                        <th>@lang('messages.title')</th>
-                        <th>@lang('messages.content')</th>
-                        <th>@lang('messages.alt')</th>
-                        <th>@lang('messages.slug')</th>
+                        <th>@lang('messages.icon')</th>
+                        <th>@lang('messages.name')</th>
+                        <th>@lang('messages.code')</th>
+                        <th>@lang('messages.status')</th>
                         <th>@lang('messages.date')</th>
                         <th>@lang('messages.actions')</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($blogs as $i => $blog)
+                    @foreach ($languages as $i => $language)
                         <tr>
                             <td>{{ $i += 1 }}</td>
+                            <td><i class="fi fi-{{ $language->code }} fis rounded-circle fs-4 me-1"></i></td>
+                            <td>{{ $language->name }}</td>
+                            <td>{{ $language->code }}</td>
                             <td>
-                                <div class="d-flex justify-content-left align-items-center">
-                                    <div class="avatar-wrapper">
-                                        <div class="avatar avatar-sm me-3">
-                                            <span
-                                                class="avatar-initial rounded-circle 
-                                            bg-label-dark">
-                                                <img src="{{ asset($blog->image) }}">
-                                            </span>
-                                        </div>
-                                    </div>
+                                <div class="form-check form-switch">
+                                    <form action="{{ route('language-status', $language->id) }}" method="POST">
+                                        @csrf
+                                        @method('PUT')
+                                        <input type="checkbox" name="status" {{ $language->status == 1 ? 'checked' : '' }}
+                                            class="form-check-input p-3" id="flexSwitchCheckDefault" onchange="this.form.submit()">
+                                    </form>
                                 </div>
                             </td>
-                            <td>{{ $blog->title }}</td>
-                            <td>{{ $blog->content }}</td>
-                            <td>{{ $blog->alt }}</td>
-                            <td>{{ $blog->slug }}</td>
-                            <td>{{ $blog->created_at }}</td>
+                            <td>{{ $language->created_at }}</td>
                             <td>
-                                <form action="{{ route('blog.destroy', $blog->id) }}" method="post">
+                                <form action="{{ route('language.destroy', $language->id) }}" method="post">
                                     @csrf
                                     @method('DELETE')
                                     <div class="dropdown">
                                       <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
                                       <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="{{ route('blog.edit', $blog->id) }}">
+                                        <a class="dropdown-item" href="{{ route('language.edit', $language->id) }}">
                                             <i class="bx bx-edit-alt me-1"></i>
                                             @lang('messages.edit')
                                         </a>

@@ -18,6 +18,7 @@ return new class extends Migration
                 ->onDelete('cascade');
             $table->string('title');
             $table->text('content');
+            $table->string('alt')->nullable();
             $table->string('slug');
             $table->string('locale')->index();
             $table->unique(['blog_id', 'locale']);

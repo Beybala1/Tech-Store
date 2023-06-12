@@ -36,6 +36,13 @@ if (!function_exists('multi_upload')) {
     }
 }
 
+if (!function_exists('lang')) {
+    function lang()
+    {
+        return App\Models\Language::where('status',1)->get();
+    }
+}
+
 if (!function_exists('admin_abort')) {
     function admin_abort()
     {

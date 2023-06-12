@@ -55,14 +55,19 @@
                             <form action="{{ route('user-and-roles.destroy',[$user->id]) }}" method="post">
                                 @csrf
                                 @method('DELETE')
-                                <div class="btn-group">
-                                    <a href="{{ route('user-and-roles.show',[$user->id]) }}" class="btn btn-success"
-                                        title="İcazə ver">
+                                <div class="dropdown">
+                                  <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
+                                  <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="{{ route('user-and-roles.show',[$user->id]) }}">
                                         <i class="bi bi-person-gear"></i>
+                                        @lang('messages.givePermission')
                                     </a>
-                                    <button type="submit" class="btn btn-danger" title="Sil">
-                                        <i class="bi bi-x-lg"></i>
-                                    </button>
+                                       <button class="dropdown-item del">
+                                        <i class="bx bx-trash me-1"></i> 
+                                        @lang('messages.delete')
+                                    </button> 
+                                    
+                                  </div>
                                 </div>
                             </form>
                             @endif
@@ -74,4 +79,5 @@
         </div>
     </div>
 </div>
+
 @endsection

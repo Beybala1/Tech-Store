@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.4/font/bootstrap-icons.css">
     <script src="{{ asset('backend/assets/vendor/js/helpers.js')}}"></script>
     <script src="{{ asset('backend/assets/js/config.js')}}"></script>
+   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
     @include('sweetalert::alert')
@@ -99,26 +100,32 @@
                     <li class="menu-item {{ request()->routeIs('dashboard.index') ? 'active' : ''}}">
                         <a href="{{ route('dashboard.index') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-spreadsheet"></i>
-                            <div data-i18n="İdarə paneli">@lang('messages.dashboard')</div>
+                            <div data-i18n="@lang('messages.dashboard')">@lang('messages.dashboard')</div>
                         </a>
                     </li>
                     <li class="menu-item {{ request()->routeIs(['blog.index','blog.create','blog.edit']) ? 'active' : ''}}">
                         <a href="{{ route('blog.index') }}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-spreadsheet"></i>
-                            <div data-i18n="İdarə paneli">@lang('messages.blog')</div>
+                            <div data-i18n="@lang('messages.blog')">@lang('messages.blog')</div>
                         </a>
                     </li>
                     <li class="menu-item">
                         <a href="{{ asset(config('translation.ui_url')) }}" target="_blank" class="menu-link">
-                            <i style="margin-right:16px;" class="fa-solid fa-globe"></i>
-                            <div data-i18n="İdarə paneli">@lang('messages.translation')</div>
+                            <i style="margin-right:16px;" class="fa-solid fa-language"></i>
+                            <div data-i18n="@lang('messages.translation')">@lang('messages.translation')</div>
+                        </a>
+                    </li>
+                    <li class="menu-item {{ request()->routeIs(['language.index','language.create','language.edit']) ? 'active' : ''}}">
+                        <a href="{{ route('language.index') }}" class="menu-link">
+                            <i style="margin-right:16px;" class="fa-solid fa-globe"></i>    
+                            <div data-i18n="@lang('messages.language')">@lang('messages.language')</div>
                         </a>
                     </li>
                     @role('admin')
                         <li class="menu-item {{ request()->routeIs(['user-and-roles.index','user-and-roles.create','user-and-roles.show','user-and-roles.store']) ? 'menu active' : ''}}">
                             <a href="{{ route('user-and-roles.index') }}" class="menu-link">
                                 <i class="menu-icon tf-icons bx bx-user"></i>
-                                <div data-i18n="İstifadəçilər və icazələr">@lang('messages.users_and_roles')</div>
+                                <div data-i18n="@lang('messages.users_and_roles')">@lang('messages.users_and_roles')</div>
                             </a>
                         </li>
                     @endrole
@@ -143,13 +150,21 @@
                                 </a>
                                 <ul class="dropdown-menu dropdown-menu-end">
                                     <li>
-                                        @foreach (config('app.locales') as $key => $lang)
+                                        @foreach (lang() as $language)
+                                            <a class="dropdown-item" href="{{ LaravelLocalization::getLocalizedURL($language->code) }}" 
+                                                data-language="{{ $language->code }}">
+                                                <i class="fi fi-{{ $language->code }} fis rounded-circle fs-4 me-1"></i>
+                                                <span class="align-middle">{{ $language->name }}</span>
+                                            </a>
+                                        @endforeach
+
+                                       <!--  @foreach (config('app.locales') as $key => $lang)
                                             <a class="dropdown-item" href="{{ LaravelLocalization::getLocalizedURL($key) }}" 
                                                 data-language="{{ $key }}">
                                                 <i class="fi fi-{{ $key }} fis rounded-circle fs-4 me-1"></i>
                                                 <span class="align-middle">{{ $lang }}</span>
                                             </a>
-                                        @endforeach
+                                        @endforeach -->
                                     </li>
                                 </ul>
                             </li>
@@ -245,15 +260,34 @@
     <script>
         $(document).ready(function () {
             var table = $('#table').DataTable({
+                responsive: true,
                 dom: 'Bfrltip',
-
                 lengthChange: true,
                 buttons: ['copy', 'excel', 'pdf', 'print', 'colvis']
             });
 
             table.buttons().container()
-                .appendTo('#table_wrapper .col-md-6:eq(0)');
+            .appendTo('#table_wrapper .col-md-6:eq(0)');
+
+            $(document).on('click', '.del', function(event) {
+                var form = $(this).closest("form");
+                var name = $(this).data("name");
+                event.preventDefault();
+                Swal.fire({
+                  title: '@lang('messages.confirmation_title')',
+                  text: '@lang('messages.confirmation_text')',
+                  icon: 'warning',
+                  showCancelButton: true,
+                  confirmButtonText: '@lang('messages.delete')',
+                  cancelButtonText: '@lang('messages.cancel')'
+                }).then((result) => {
+                  if (result.isConfirmed) {
+                    form.submit();
+                  }
+                });
+            });
         });
+
     </script>
     @stack('scripts')
     <script src="{{ asset('backend/assets/vendor/libs/popper/popper.js')}}"></script>

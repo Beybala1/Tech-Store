@@ -15,6 +15,7 @@ class Blog extends Model implements TranslatableContract
     public $translatedAttributes = [
         'title',
         'content',
+        'alt',
         'slug',
     ];
 }

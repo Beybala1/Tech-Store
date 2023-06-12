@@ -3,8 +3,6 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Models\Blog;
-use App\Http\Requests\StoreBlogRequest; 
-use App\Http\Requests\UpdateBlogRequest;
 use App\Http\Controllers\Controller;
 use App\Models\BlogTranslation;
 use Illuminate\Http\Request;
@@ -30,12 +28,13 @@ class BlogController extends Controller
                     'author' => $request->author,
                     'image' => upload('blogs', $request->file('image')),
                 ]);
-                foreach (config('app.locales') as $key => $lang) {
+                foreach (lang() as $language) {
                     $translation = new BlogTranslation();
-                    $translation->title = $request->title[$key];
-                    $translation->content = $request->content[$key];
-                    $translation->slug = $request->slug[$key];
-                    $translation->locale = $key;
+                    $translation->title = $request->title[$language->code];
+                    $translation->content = $request->content[$language->code];
+                    $translation->alt = $request->alt[$language->code];
+                    $translation->slug = $request->slug[$language->code];
+                    $translation->locale = $language->code;
                     $translation->blog_id = $blog->id;
                     $translation->save();
                 }
@@ -62,14 +61,15 @@ class BlogController extends Controller
                 $blog->image = upload('blogs', $request->file('image'));
             }
             $blog->author = $request->author;
-            foreach (config('app.locales') as $key => $lang) {
+            foreach (lang() as $language) {
                 $translationData = [
-                    'title' => $request->title[$key],
-                    'content' => $request->content[$key],
-                    'slug' => $request->slug[$key],
-                    'locale' => $key,
+                    'title' => $request->title[$language->code],
+                    'content' => $request->content[$language->code],
+                    'alt' => $request->alt[$language->code],
+                    'slug' => $request->slug[$language->code],
+                    'locale' => $language->code,
                 ];
-                $blog->translations()->updateOrCreate(['locale' => $key], $translationData);
+                $blog->translations()->updateOrCreate(['locale' => $language->code], $translationData);
             }
 
             $blog->save();
@@ -78,6 +78,7 @@ class BlogController extends Controller
             return back()->with('warning', __('messages.fail'));
         }
     }
+
 
     public function destroy(Blog $blog)
     {

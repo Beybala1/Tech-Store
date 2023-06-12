@@ -23,16 +23,16 @@
         <form action="{{ route('blog.store') }}" method="post" enctype="multipart/form-data">
             @csrf
             <ul class="nav nav-pills nav-justified" id="pills-tab" role="tablist">
-                @foreach (config('app.locales') as $key => $lang)
-                    <li class="nav-item" role="presentation">
-                        <a class="nav-link {{ $key === app()->getLocale() ? 'active' : '' }}"
-                            id="pills-{{ $key }}-tab" data-bs-toggle="pill"
-                            data-bs-target="#pills-{{ $key }}" type="button" role="tab"
-                            aria-controls="pills-{{ $key }}"
-                            aria-selected="{{ $key === app()->getLocale() ? 'true' : 'false' }}">
-                            {{ $lang }}
-                        </a>
-                    </li>
+                @foreach (lang() as $language)
+                <li class="nav-item" role="presentation">
+                    <a class="nav-link {{ $language->code === app()->getLocale() ? 'active' : '' }}"
+                        id="pills-{{ $language->code }}-tab" data-bs-toggle="pill"
+                        data-bs-target="#pills-{{ $language->code }}" type="button" role="tab"
+                        aria-controls="pills-{{ $language->code }}"
+                        aria-selected="{{ $language->code === app()->getLocale() ? 'true' : 'false' }}">
+                        {{ $language->name }}
+                    </a>
+                </li>
                 @endforeach
             </ul>
             <div class="tab-content" id="pills-tabContent">
@@ -48,23 +48,28 @@
                     <input type="text" name="author" value="{{ old('author') }}" class="form-control"
                         id="basic-default-author" placeholder="@lang('messages.author')" required>
                 </div>
-                @foreach (config('app.locales') as $key => $lang)
-                    <div class="tab-pane fade {{ $key === app()->getLocale() ? 'show active' : '' }}"
-                        id="pills-{{ $key }}" role="tabpanel"
-                        aria-labelledby="pills-{{ $key }}-tab">
+                @foreach (lang() as $language)
+                    <div class="tab-pane fade {{ $language->code === app()->getLocale() ? 'show active' : '' }}"
+                        id="pills-{{ $language->code }}" role="tabpanel"
+                        aria-labelledby="pills-{{ $language->code }}-tab">
                         {{-- Form --}}
                         <div class="mb-3">
                             <label class="form-label" for="basic-default-title">@lang('messages.title')</label>
-                            <input type="text" name="title[{{ $key }}]" value="{{ old('title') }}"
+                            <input type="text" name="title[{{ $language->code }}]" value="{{ old('title') }}"
                                 class="form-control" id="basic-default-title" placeholder="@lang('messages.title')" required>
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="basic-default-content">@lang('messages.content')</label>
-                            <textarea name="content[{{ $key }}]" class="form-control" cols="20" rows="7" required>{{ old('content') }}</textarea>
+                            <textarea name="content[{{ $language->code }}]" class="form-control" cols="20" rows="7" required>{{ old('content') }}</textarea>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label" for="basic-default-alt">@lang('messages.alt')</label>
+                            <input type="text" name="alt[{{ $language->code }}]" value="{{ old('alt') }}"
+                                class="form-control" id="basic-default-alt" placeholder="@lang('messages.alt')" required>
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="basic-default-slug">@lang('messages.slug')</label>
-                            <input type="text" name="slug[{{ $key }}]" value="{{ old('slug') }}"
+                            <input type="text" name="slug[{{ $language->code }}]" value="{{ old('slug') }}"
                                 class="form-control" id="basic-default-slug" placeholder="@lang('messages.slug')" required>
                         </div>
                         <div class="pt-2">
@@ -73,6 +78,7 @@
                         </div>
                     </div>
                 @endforeach
+
             </div>
         </form>
     </div>
