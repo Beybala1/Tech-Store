@@ -53,11 +53,6 @@
                     <input type="file" name="image" class="form-control" value="{{ $blog->image }}"
                         id="imageInput" placeholder="@lang('messages.image')">
                 </div>
-                <div class="mb-3">
-                    <label class="form-label" for="basic-default-author">@lang('messages.author')</label>
-                    <input type="text" name="author" class="form-control" value="{{ $blog->author }}"
-                        id="basic-default-author" placeholder="@lang('messages.author')" required>
-                </div>
                 @foreach (lang() as $language)
                     <div class="tab-pane fade {{ $language->code === app()->getLocale() ? 'show active' : '' }}"
                         id="pills-{{ $language->code }}" role="tabpanel"
@@ -77,7 +72,7 @@
                             <label class="form-label" for="basic-default-alt">@lang('messages.alt')</label>
                             <input type="text" name="alt[{{ $language->code }}]" class="form-control"
                                 value="{{ $blog->translate($language->code)->alt }}" id="basic-default-alt"
-                                placeholder="@lang('messages.alt')" required>
+                                placeholder="@lang('messages.alt')" >
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="basic-default-slug">@lang('messages.slug')</label>

@@ -4,15 +4,17 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\Blog;
 use App\Models\BlogTranslation;
+use App\Models\Blog;
 
 class BlogSeeder extends Seeder
 {
     /**
      * Run the database seeds.
+     *
+     * @return void
      */
-    public function run(): void
+    public function run()
     {
         foreach (range(1, 5) as $key => $index) {
             $blog = Blog::create([

@@ -25,7 +25,6 @@ class BlogController extends Controller
         try {
             if ($request->hasFile('image')) {
                 $blog = Blog::create([
-                    'author' => $request->author,
                     'image' => upload('blogs', $request->file('image')),
                 ]);
                 foreach (lang() as $language) {
@@ -60,7 +59,6 @@ class BlogController extends Controller
                 }
                 $blog->image = upload('blogs', $request->file('image'));
             }
-            $blog->author = $request->author;
             foreach (lang() as $language) {
                 $translationData = [
                     'title' => $request->title[$language->code],

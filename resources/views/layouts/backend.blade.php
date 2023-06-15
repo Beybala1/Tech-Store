@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+    <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}" class="light-style layout-navbar-fixed layout-menu-fixed" dir="ltr" data-theme="theme-default"
     data-assets-path="{{ asset('backend/assets/')}}" data-template="vertical-menu-template">
 
@@ -103,21 +103,96 @@
                             <div data-i18n="@lang('messages.dashboard')">@lang('messages.dashboard')</div>
                         </a>
                     </li>
-                    <li class="menu-item {{ request()->routeIs(['blog.index','blog.create','blog.edit']) ? 'active' : ''}}">
+                    <li class="menu-item {{ request()->routeIs(['slider.index','slider.create','slider.edit']) ? 'active' : ''}}">
+                        <a href="{{ route('slider.index') }}" class="menu-link">
+                            <i class="menu-icon fas fa-sliders-h"></i>
+                            <div data-i18n="@lang('messages.slider')">@lang('messages.slider')</div>
+                        </a>
+                    </li>
+                    <li class="menu-item {{ request()->routeIs(['category.index','category.create','category.edit']) ? 'active' : ''}}">
+                        <a href="{{ route('category.index') }}" class="menu-link">
+                            <i class="menu-icon fas fa-list"></i>
+                            <div data-i18n="@lang('messages.category')">@lang('messages.category')</div>
+                        </a>
+                    </li>
+                    <li class="menu-item {{ request()->routeIs(['products.index','products.create','products.edit']) ? 'active' : ''}}">
+                        <a href="{{ route('products.index') }}" class="menu-link">
+                            <i class="menu-icon fas fa-shopping-cart"></i>
+                            <div data-i18n="@lang('messages.products')">@lang('messages.products')</div>
+                        </a>
+                    </li>
+                    <li class="menu-item {{ request()->routeIs(['service.index','service.create','service.edit']) ? 'active' : ''}}">
+                        <a href="{{ route('service.index') }}" class="menu-link">
+                            <i class="menu-icon fas fa-wrench"></i>
+                            <div data-i18n="@lang('messages.service')">@lang('messages.service')</div>
+                        </a>
+                    </li>
+                     <li class="menu-item {{ request()->routeIs(['statistic.index','statistic.create','statistic.edit']) ? 'active' : ''}}">
+                        <a href="{{ route('statistic.index') }}" class="menu-link">
+                            <i class="menu-icon fas fa-chart-bar"></i>
+                            <div data-i18n="@lang('messages.statistic')">@lang('messages.statistic')</div>
+                        </a>
+                    </li>
+                     <li class="menu-item {{ request()->routeIs(['partner.index','partner.create','partner.edit']) ? 'active' : ''}}">
+                        <a href="{{ route('partner.index') }}" class="menu-link">
+                            <i class="menu-icon fas fa-users"></i>
+                            <div data-i18n="@lang('messages.partner')">@lang('messages.partner')</div>
+                        </a>
+                    </li>
+                     <li class="menu-item {{ request()->routeIs(['blog.index','blog.create','blog.edit']) ? 'active' : ''}}">
                         <a href="{{ route('blog.index') }}" class="menu-link">
-                            <i class="menu-icon tf-icons bx bx-spreadsheet"></i>
+                            <i class="menu-icon fas fa-newspaper"></i>
                             <div data-i18n="@lang('messages.blog')">@lang('messages.blog')</div>
+                        </a>
+                    </li>
+                     <li class="menu-item {{ request()->routeIs(['faq.index','faq.create','faq.edit']) ? 'active' : ''}}">
+                        <a href="{{ route('faq.index') }}" class="menu-link">
+                            <i class="menu-icon fa-solid fa-circle-question"></i>
+                            <div data-i18n="@lang('messages.faq')">@lang('messages.faq')</div>
+                        </a>
+                    </li>
+                    <li class="menu-item" style="">
+                        <a href="javascript:void(0);" class="menu-link menu-toggle">
+                            <i class="menu-icon fas fa-building"></i>
+                            <div data-i18n="Dashboards">@lang('messages.company-info')</div>
+                        </a>
+                        <ul class="menu-sub">
+                             <li class="menu-item {{ request()->routeIs(['about.index','about.edit']) ? 'active' : ''}}">
+                        <a href="{{ route('about.index') }}" class="menu-link">
+                            <i class="menu-icon fas fa-building"></i>
+                            <div data-i18n="@lang('messages.about')">@lang('messages.about')</div>
+                        </a>
+                    </li>
+                    <li class="menu-item {{ request()->routeIs(['contact-info.index','contact-info.create','contact-info.edit']) ? 'active' : ''}}">
+                        <a href="{{ route('contact-info.index') }}" class="menu-link">
+                            <i class="menu-icon fas fa-building"></i>
+                            <div data-i18n="@lang('messages.contact-info')">@lang('messages.contact-info')</div>
+                        </a>
+                    </li>
+                    <li class="menu-item {{ request()->routeIs(['social.index','social.create','social.edit']) ? 'active' : ''}}">
+                        <a href="{{ route('social.index') }}" class="menu-link">
+                            <i class="menu-icon fab fa-instagram-square"></i>
+                            <div data-i18n="@lang('messages.social')">@lang('messages.social')</div>
+                        </a>
+                    </li>
+                        </ul>
+                    </li>
+                   
+                    <li class="menu-item {{ request()->routeIs(['message.index']) ? 'active' : ''}}">
+                        <a href="{{ route('message.index') }}" class="menu-link">
+                            <i class="menu-icon fas fa-envelope"></i>
+                            <div data-i18n="@lang('messages.message')">@lang('messages.message')</div>
                         </a>
                     </li>
                     <li class="menu-item">
                         <a href="{{ asset(config('translation.ui_url')) }}" target="_blank" class="menu-link">
-                            <i style="margin-right:16px;" class="fa-solid fa-language"></i>
+                            <i class=" menu-icon fa-solid fa-language"></i>
                             <div data-i18n="@lang('messages.translation')">@lang('messages.translation')</div>
                         </a>
                     </li>
                     <li class="menu-item {{ request()->routeIs(['language.index','language.create','language.edit']) ? 'active' : ''}}">
                         <a href="{{ route('language.index') }}" class="menu-link">
-                            <i style="margin-right:16px;" class="fa-solid fa-globe"></i>    
+                            <i class="menu-icon fa-solid fa-globe"></i>    
                             <div data-i18n="@lang('messages.language')">@lang('messages.language')</div>
                         </a>
                     </li>
@@ -157,14 +232,6 @@
                                                 <span class="align-middle">{{ $language->name }}</span>
                                             </a>
                                         @endforeach
-
-                                       <!--  @foreach (config('app.locales') as $key => $lang)
-                                            <a class="dropdown-item" href="{{ LaravelLocalization::getLocalizedURL($key) }}" 
-                                                data-language="{{ $key }}">
-                                                <i class="fi fi-{{ $key }} fis rounded-circle fs-4 me-1"></i>
-                                                <span class="align-middle">{{ $lang }}</span>
-                                            </a>
-                                        @endforeach -->
                                     </li>
                                 </ul>
                             </li>
