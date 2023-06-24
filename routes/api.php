@@ -18,9 +18,11 @@ use App\Http\Controllers\Api\Auth\RegisterController;
 use App\Http\Controllers\Api\Auth\LoginController;
 use App\Http\Controllers\Api\Auth\EmailVerificationController;
 use App\Http\Controllers\Api\Auth\ForgotPasswordController;
+use App\Http\Controllers\Api\Auth\SocialiteController;
 
 Route::post('/register', [RegisterController::class, 'register']);
 Route::post('/login', [LoginController::class, 'login']);
+Route::get('/logout', [LoginController::class, 'logout']);
 
 Route::get('email/verify/{id}/{hash}', [EmailVerificationController::class, 'verify'])
     ->name('verification.verify');
@@ -28,8 +30,12 @@ Route::post('email/resend', [EmailVerificationController::class, 'resend'])
     ->name('verification.resend');
 Route::post('password/forgot', [ForgotPasswordController::class, 'forgot']);
 Route::post('password/reset', [ForgotPasswordController::class, 'reset']);
+Route::middleware('api')->group(function () {
+    Route::get('google/redirect', [SocialiteController::class, 'redirectToGoogle']);
+    Route::get('google/callback', [SocialiteController::class, 'handleGoogleCallback']);
+});
 
-Route::middleware(['auth:sanctum', 'verified'])->group(function () {
+Route::middleware(['auth:api', 'verified'])->group(function () {
     Route::get('/slider', [SliderController::class, 'index']);
     Route::get('/category', [CategoryController::class, 'index']);
     Route::get('/service', [ServiceController::class, 'index']);
@@ -42,7 +48,11 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/message', [MessageController::class, 'store']);
     Route::apiResource('/blog', BlogController::class)->only(['index', 'show']);
     Route::apiResource('/products', ProductController::class)->only(['index', 'show']);
-}); 
+});
+
+Route::middleware('auth:api')->get('/user', function (Request $request) {
+    return $request->user();
+});
 
 // Route::get('/slider',[SliderController::class, 'index']); 
 // Route::get('/category',[CategoryController::class, 'index']); 

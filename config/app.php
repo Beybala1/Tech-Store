@@ -85,9 +85,9 @@ return [
     'locale' => 'az',
 
     'locales' => [
-        'az'=>'Azərbaycan',
-        'us'=>'English',
-        'ru'=>'Russian',
+        'az' => 'Azərbaycan',
+        'us' => 'English',
+        'ru' => 'Russian',
     ],
 
     /*
@@ -188,7 +188,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
-        Spatie\Permission\PermissionServiceProvider::class,     
+        Spatie\Permission\PermissionServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
 
 
@@ -221,6 +221,7 @@ return [
     'aliases' => Facade::defaultAliases()->merge([
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
         'Image' => Intervention\Image\Facades\Image::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
 

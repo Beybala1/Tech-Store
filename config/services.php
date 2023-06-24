@@ -21,6 +21,18 @@ return [
         'scheme' => 'https',
     ],
 
+    // 'google' => [
+    //     'client_id' => env('GOOGLE_CLIENT_ID'),
+    //     'client_secret' => env('GOOGLE_CLIENT_SECRET'),
+    //     'redirect' => env('GOOGLE_REDIRECT'),
+    // ],
+
+    'google' => [
+        'client_id' => '406940164110-t5vu9nghti556u0fkqpfm66pi424dvto.apps.googleusercontent.com',
+        'client_secret' => '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',
+        'redirect' => 'http://localhost/auth/google/callback',
+    ],
+
     'postmark' => [
         'token' => env('POSTMARK_TOKEN'),
     ],
