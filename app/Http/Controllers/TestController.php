@@ -9,24 +9,14 @@ use Exception;
 use App\Models\User;
 class TestController extends Controller
 {
-    /**
-     * Redirect the user to the GitHub authentication page.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function redirectToGoogle()
     {
         return Socialite::driver('google')->redirect();
     }
 
-    /**
-     * Obtain the user information from GitHub.
-     *
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Routing\Redirector
-     */
     public function handleGoogleCallback()
     {
-        try {
+        // try {
             //create a user using socialite driver google
             $user = Socialite::driver('google')->user();
             // if the user exits, use that user and login
@@ -51,8 +41,8 @@ class TestController extends Controller
                 return redirect('/dashboard');
             }
             //catch exceptions
-        } catch (Exception $e) {
-            dd($e->getMessage());
-        }
+        // } catch (Exception $e) {
+        //     dd($e->getMessage());
+        // }
     }
 }

@@ -30,10 +30,10 @@ Route::post('email/resend', [EmailVerificationController::class, 'resend'])
     ->name('verification.resend');
 Route::post('password/forgot', [ForgotPasswordController::class, 'forgot']);
 Route::post('password/reset', [ForgotPasswordController::class, 'reset']);
-Route::middleware('api')->group(function () {
-    Route::get('google/redirect', [SocialiteController::class, 'redirectToGoogle']);
-    Route::get('google/callback', [SocialiteController::class, 'handleGoogleCallback']);
-});
+// Route::middleware('api')->group(function () {
+//     Route::get('google/redirect', [SocialiteController::class, 'redirectToGoogle']);
+//     Route::get('google/callback', [SocialiteController::class, 'handleGoogleCallback']);
+// });
 
 Route::middleware(['auth:api', 'verified'])->group(function () {
     Route::get('/slider', [SliderController::class, 'index']);

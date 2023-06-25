@@ -28,9 +28,9 @@ return [
     // ],
 
     'google' => [
-        'client_id' => '406940164110-t5vu9nghti556u0fkqpfm66pi424dvto.apps.googleusercontent.com',
-        'client_secret' => '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',
-        'redirect' => 'http://localhost/auth/google/callback',
+        'client_id' => '406940164110-stouk0pbid1ov84s33kppjh3018jmbea.apps.googleusercontent.com',
+        'client_secret' => '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',
+        'redirect' => 'http://127.0.0.1:8000/auth/google/callback',
     ],
 
     'postmark' => [
