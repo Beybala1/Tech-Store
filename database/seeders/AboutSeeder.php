@@ -21,11 +21,11 @@ class AboutSeeder extends Seeder
             ]);
 
             foreach (lang() as $lang) {
-                $langCode = $lang->code; 
-                
+                $langCode = $lang->code;
+
                 AboutTranslation::create([
                     'title' => 'Lorem ipsum_' . $langCode,
-                    'content' => 'Lorem ipsum_' . $langCode,
+                    'description' => 'Lorem ipsum_' . $langCode,
                     'alt' => 'Lorem ipsum_' . $langCode,
                     'locale' => $langCode,
                     'about_id' => $about->id,

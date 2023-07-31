@@ -36,7 +36,7 @@
                                     <div class="avatar-wrapper">
                                         <div class="avatar avatar-sm me-3">
                                             <span
-                                                class="avatar-initial rounded-circle 
+                                                class="avatar-initial rounded-circle
                                             bg-label-dark">
                                                 <img src="{{ asset($blog->image) }}">
                                             </span>
@@ -45,7 +45,7 @@
                                 </div>
                             </td>
                             <td>{{ $blog->title }}</td>
-                            <td>{{ $blog->content }}</td>
+                            <td>{{ $blog->description }}</td>
                             <td>{{ $blog->alt }}</td>
                             <td>{{ $blog->slug }}</td>
                             <td>{{ $blog->created_at }}</td>

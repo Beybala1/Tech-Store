@@ -95,7 +95,7 @@
                 </div>
 
                 <div class="menu-inner-shadow"></div>
- 
+
                 <ul class="menu-inner py-1">
                     <li class="menu-item {{ request()->routeIs('dashboard.index') ? 'active' : ''}}">
                         <a href="{{ route('dashboard.index') }}" class="menu-link">
@@ -113,6 +113,12 @@
                         <a href="{{ route('category.index') }}" class="menu-link">
                             <i class="menu-icon fas fa-list"></i>
                             <div data-i18n="@lang('messages.category')">@lang('messages.category')</div>
+                        </a>
+                    </li>
+                    <li class="menu-item {{ request()->routeIs(['alt-category.index','alt-category.create','alt-category.edit']) ? 'active' : ''}}">
+                        <a href="{{ route('alt-category.index') }}" class="menu-link">
+                            <i class="menu-icon fas fa-list"></i>
+                            <div data-i18n="@lang('messages.alt-category')">@lang('messages.alt-category')</div>
                         </a>
                     </li>
                     <li class="menu-item {{ request()->routeIs(['products.index','products.create','products.edit']) ? 'active' : ''}}">
@@ -177,7 +183,7 @@
                     </li>
                         </ul>
                     </li>
-                   
+
                     <li class="menu-item {{ request()->routeIs(['message.index']) ? 'active' : ''}}">
                         <a href="{{ route('message.index') }}" class="menu-link">
                             <i class="menu-icon fas fa-envelope"></i>
@@ -192,7 +198,7 @@
                     </li>
                     <li class="menu-item {{ request()->routeIs(['language.index','language.create','language.edit']) ? 'active' : ''}}">
                         <a href="{{ route('language.index') }}" class="menu-link">
-                            <i class="menu-icon fa-solid fa-globe"></i>    
+                            <i class="menu-icon fa-solid fa-globe"></i>
                             <div data-i18n="@lang('messages.language')">@lang('messages.language')</div>
                         </a>
                     </li>
@@ -226,7 +232,7 @@
                                 <ul class="dropdown-menu dropdown-menu-end">
                                     <li>
                                         @foreach (lang() as $language)
-                                            <a class="dropdown-item" href="{{ LaravelLocalization::getLocalizedURL($language->code) }}" 
+                                            <a class="dropdown-item" href="{{ LaravelLocalization::getLocalizedURL($language->code) }}"
                                                 data-language="{{ $language->code }}">
                                                 <i class="fi fi-{{ $language->code }} fis rounded-circle fs-4 me-1"></i>
                                                 <span class="align-middle">{{ $language->name }}</span>

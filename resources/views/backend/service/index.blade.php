@@ -31,7 +31,7 @@
                             <td>{{ $i += 1 }}</td>
                             <td><i class="{{ $service->icon }}"></i></td>
                             <td>{{ $service->title }}</td>
-                            <td>{{ $service->content }}</td>
+                            <td>{{ $service->description }}</td>
                             <td>{{ $service->created_at }}</td>
                             <td>
                                 <form action="{{ route('service.destroy', $service->id) }}" method="post">

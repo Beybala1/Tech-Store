@@ -84,12 +84,6 @@ return [
 
     'locale' => 'az',
 
-    'locales' => [
-        'az' => 'Azərbaycan',
-        'us' => 'English',
-        'ru' => 'Russian',
-    ],
-
     /*
     |--------------------------------------------------------------------------
     | Application Fallback Locale

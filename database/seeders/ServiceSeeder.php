@@ -16,11 +16,11 @@ class ServiceSeeder extends Seeder
             $service->icon = 'fas fa-wrench';
             $service->save();
             foreach (lang() as $lang) {
-                $langCode = $lang->code; 
-                
+                $langCode = $lang->code;
+
                 ServiceTranslation::create([
                     'title' => 'Service_' . $langCode,
-                    'content' => 'Service_' . $langCode,
+                    'description' => 'Service_' . $langCode,
                     'locale' => $langCode,
                     'service_id' => $service->id,
                 ]);

@@ -18,17 +18,17 @@ class BlogSeeder extends Seeder
     {
         foreach (range(1, 5) as $key => $index) {
             $blog = Blog::create([
-                'image' => 'backend/images/image.jpg',
+                'image' => 'backend/images/news.jpg',
             ]);
 
             foreach (lang() as $lang) {
-                $langCode = $lang->code; 
-                
+                $langCode = $lang->code;
+
                 BlogTranslation::create([
-                    'title' => 'Lorem ipsum_' . $langCode,
-                    'content' => 'Lorem ipsum_' . $langCode,
-                    'slug' => 'Lorem ipsum_' . $langCode,
-                    'alt' => 'Lorem ipsum_' . $langCode,
+                    'title' => 'lorem_ipsum_' . $langCode."-".$key,
+                    'description' => 'lorem_ipsum_' . $langCode."-".$key,
+                    'slug' => 'lorem_ipsum__' . $langCode."-".$key,
+                    'alt' => 'lorem_ipsum__' . $langCode."-".$key,
                     'locale' => $langCode,
                     'blog_id' => $blog->id,
                 ]);

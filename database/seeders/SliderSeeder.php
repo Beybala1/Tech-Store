@@ -22,12 +22,12 @@ class SliderSeeder extends Seeder
             ]);
 
             foreach (lang() as $lang) {
-                $langCode = $lang->code; 
-                
+                $langCode = $lang->code;
+
                 SliderTranslation::create([
-                    'title' => 'Lorem ipsum_' . $langCode,
-                    'content' => 'Lorem ipsum_' . $langCode,
-                    'alt' => 'Lorem ipsum_' . $langCode,
+                    'title' => 'Lorem ipsum_' . $langCode."-".$key,
+                    'description' => 'Lorem ipsum_' . $langCode."-".$key,
+                    'alt' => 'Lorem ipsum_' . $langCode."-".$key,
                     'locale' => $langCode,
                     'slider_id' => $slider->id,
                 ]);

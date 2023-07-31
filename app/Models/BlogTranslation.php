@@ -9,4 +9,9 @@ class BlogTranslation extends Model
     public $timestamps = false;
 
     protected $guarded = [];
+
+    public function blog()
+    {
+        return $this->belongsTo(Blog::class);
+    }
 }

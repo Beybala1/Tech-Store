@@ -37,7 +37,7 @@
                                     <div class="avatar-wrapper">
                                         <div class="avatar avatar-sm me-3">
                                             <span
-                                                class="avatar-initial rounded-circle 
+                                                class="avatar-initial rounded-circle
                                             bg-label-dark">
                                                 <img src="{{ asset($product
                                                 ->image) }}">
@@ -48,7 +48,7 @@
                             </td>
                             <td>{{ $product->title }}</td>
                             <td>{{ $product->category->title }}</td>
-                            <td>{{ $product->content }}</td>
+                            <td>{{ $product->description }}</td>
                             <td>{{ $product->alt }}</td>
                             <td>{{ $product->slug }}</td>
                             <td>{{ $product->created_at }}</td>

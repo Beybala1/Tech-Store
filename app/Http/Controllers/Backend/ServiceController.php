@@ -29,7 +29,7 @@ class ServiceController extends Controller
             foreach (lang() as $language) {
                 $translation = new ServiceTranslation();
                 $translation->title = $request->title[$language->code];
-                $translation->content = $request->content[$language->code];
+                $translation->description = $request->description[$language->code];
                 $translation->locale = $language->code;
                 $translation->service_id = $service->id;
                 $translation->save();
@@ -49,12 +49,12 @@ class ServiceController extends Controller
     {
         try {
             foreach (lang() as $language) {
-                $services->create([
+                $service->update([
                     'icon'=>$request->icon
                 ]);
                 $translationData = [
                     'title' => $request->title[$language->code],
-                    'content' => $request->content[$language->code],
+                    'description' => $request->description[$language->code],
                     'locale' => $language->code,
                 ];
                 $service->translations()->updateOrCreate(['locale' => $language->code], $translationData);

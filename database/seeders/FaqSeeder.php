@@ -15,10 +15,10 @@ class FaqSeeder extends Seeder
             $faq = new Faq();
             $faq->save();
             foreach (lang() as $lang) {
-                $langCode = $lang->code; 
+                $langCode = $lang->code;
                 FaqTranslation::create([
                     'title' => 'Faq_' . $langCode,
-                    'content' => 'Faq_' . $langCode,
+                    'description' => 'Faq_' . $langCode,
                     'locale' => $langCode,
                     'faq_id' => $faq->id,
                 ]);

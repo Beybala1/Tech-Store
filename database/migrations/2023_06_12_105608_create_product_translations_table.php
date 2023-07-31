@@ -17,7 +17,7 @@ return new class extends Migration
                 ->constrained('products')
                 ->onDelete('cascade');
             $table->string('title');
-            $table->text('content');
+            $table->longText('description');
             $table->string('slug');
             $table->string('alt')->nullable();
             $table->string('locale')->index();

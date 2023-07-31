@@ -17,22 +17,22 @@ class ContactInfoSeeder extends Seeder
     {
         $infos = [
             [
-                'content' => '+994',
+                'description' => '+994',
             ],
             [
-                'content' => '+994',
+                'description' => '+994',
             ],
             [
-                'content' => 'Lorem ipsum',
+                'description' => 'Lorem ipsum',
             ],
             [
-                'content' => 'Lorem ipsum',
+                'description' => 'Lorem ipsum',
             ],
             [
-                'content' => 'admin@mizuha.az',
+                'description' => 'admin@mizuha.az',
             ],
         ];
-        
+
         foreach ($infos as $info) {
             ContactInfo::create($info);
         }

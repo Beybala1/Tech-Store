@@ -29,7 +29,7 @@
                                     <div class="avatar-wrapper">
                                         <div class="avatar avatar-sm me-3">
                                             <span
-                                                class="avatar-initial rounded-circle 
+                                                class="avatar-initial rounded-circle
                                             bg-label-dark">
                                                 <img src="{{ asset($about->image) }}">
                                             </span>
@@ -38,7 +38,7 @@
                                 </div>
                             </td>
                             <td>{{ $about->title }}</td>
-                            <td>{{ $about->content }}</td>
+                            <td>{{ $about->description }}</td>
                             <td>{{ $about->alt }}</td>
                             <td>{{ $about->created_at }}</td>
                             <td>

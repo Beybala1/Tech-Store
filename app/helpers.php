@@ -2,17 +2,28 @@
 
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Str;
+use Intervention\Image\Facades\Image;
 
 if (!function_exists('upload')) {
-    function upload($path, $file)
+    function upload($path, $file): string|\Illuminate\Http\RedirectResponse
     {
         try {
             $img = $file;
             $extension = $img->getClientOriginalExtension();
             $filename = time() . '.' . $extension;
+
+            // Move the original image
             $img->move('images/' . $path, $filename);
+
+            // Generate WebP version
+            $image = Image::make(public_path('images/' . $path . '/' . $filename));
+            $webpFilename = pathinfo($filename, PATHINFO_FILENAME) . '.webp';
+            $webpImagePath = public_path('images/' . $path . '/' . $webpFilename);
+            $image->save($webpImagePath, 80);
+
             $data['photo'] = 'images/' . $path . '/' . $filename;
-            return $data['photo'];
+            $data['photo_webp'] = 'images/' . $path . '/' . $webpFilename;
+            return $data['photo_webp']; // Return the WebP image path
         } catch (Exception $e) {
             return redirect()->back();
         }
@@ -20,7 +31,7 @@ if (!function_exists('upload')) {
 }
 
 if (!function_exists('multi_upload')) {
-    function multi_upload($path, $files)
+    function multi_upload($path, $files): array|\Illuminate\Http\RedirectResponse
     {
         try {
             $result = [];
@@ -44,7 +55,7 @@ if (!function_exists('lang')) {
 }
 
 if (!function_exists('admin_abort')) {
-    function admin_abort()
+    function admin_abort(): void
     {
         if (Gate::denies('admin')) {
             abort(403);

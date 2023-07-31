@@ -30,7 +30,7 @@ class BlogController extends Controller
                 foreach (lang() as $language) {
                     $translation = new BlogTranslation();
                     $translation->title = $request->title[$language->code];
-                    $translation->content = $request->content[$language->code];
+                    $translation->description = $request->description[$language->code];
                     $translation->alt = $request->alt[$language->code];
                     $translation->slug = $request->slug[$language->code];
                     $translation->locale = $language->code;
@@ -62,7 +62,7 @@ class BlogController extends Controller
             foreach (lang() as $language) {
                 $translationData = [
                     'title' => $request->title[$language->code],
-                    'content' => $request->content[$language->code],
+                    'description' => $request->description[$language->code],
                     'alt' => $request->alt[$language->code],
                     'slug' => $request->slug[$language->code],
                     'locale' => $language->code,

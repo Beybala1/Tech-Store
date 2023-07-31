@@ -8,7 +8,7 @@
 
 <div class="card mb-4">
     <div class="card-header d-flex justify-content-between align-items-center">
-        <h3 class="mb-0">@lang('messages.service') @lang('messages.create')</h3>
+        <h3 class="mb-0">@lang('messages.service') @lang('messages.editData')</h3>
     </div>
     <div class="card-body">
     <p class="text-center alert alert-warning fw-bold">@lang('messages.icon-class')</p>
@@ -56,7 +56,8 @@
                     </div>
                     <div class="mb-3">
                         <label class="form-label" for="basic-default-content">@lang('messages.content')</label>
-                        <textarea name="content[{{ $language->code }}]" class="form-control" cols="20" rows="7" required>{{ $service->translate($language->code)->content }}</textarea>
+                        <textarea name="description[{{ $language->code }}]" class="form-control" cols="20" rows="7" required>{{ $service->translate($language->code)->description }}
+                        </textarea>
                     </div>
                     <div class="pt-2">
                         <button type="submit" class="btn btn-primary me-sm-3 me-1">@lang('messages.store')</button>

@@ -56,7 +56,7 @@ return [
     | Define the URL used to access the language management too.
     |
     */
-    'ui_url' => 'dil',
+    'ui_url' => 'admin/dil',
 
     /*
     |--------------------------------------------------------------------------

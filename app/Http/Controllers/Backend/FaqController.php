@@ -27,7 +27,7 @@ class FaqController extends Controller
                 foreach (lang() as $language) {
                     $translation = new FaqTranslation();
                     $translation->title = $request->title[$language->code];
-                    $translation->content = $request->content[$language->code];
+                    $translation->description = $request->description[$language->code];
                     $translation->locale = $language->code;
                     $translation->faq_id = $faq->id;
                     $translation->save();
@@ -49,7 +49,7 @@ class FaqController extends Controller
             foreach (lang() as $language) {
                 $translationData = [
                     'title' => $request->title[$language->code],
-                    'content' => $request->content[$language->code],
+                    'description' => $request->description[$language->code],
                     'locale' => $language->code,
                 ];
                 $faq->translations()->updateOrCreate(['locale' => $language->code], $translationData);

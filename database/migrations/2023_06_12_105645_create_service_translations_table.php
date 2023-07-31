@@ -17,7 +17,7 @@ return new class extends Migration
                 ->constrained('services')
                 ->onDelete('cascade');
             $table->string('title');
-            $table->text('content');
+            $table->longText('description');
             $table->string('locale')->index();
             $table->unique(['service_id', 'locale']);
         });

@@ -24,7 +24,7 @@
             @csrf
             <div class="mb-3">
                 <label class="form-label" for="basic-default-content">@lang('messages.content')</label>
-                <textarea name="content" class="form-control" cols="20" rows="7" required>{{ old('content') }}</textarea>
+                <textarea name="description" class="form-control" cols="20" rows="7" required>{{ old('description') }}</textarea>
             </div>
             <button type="submit" class="btn btn-primary me-sm-3 me-1">@lang('messages.store')</button>
             <a href="{{ route('contact-info.index') }}" class="btn btn-label-secondary">@lang('messages.cancel')</a>

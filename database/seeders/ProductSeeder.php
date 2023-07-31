@@ -24,7 +24,7 @@ class ProductSeeder extends Seeder
                 $langCode = $lang->code;
                 $translation = new ProductTranslation();
                 $translation->title = 'Lorem ipsum_' . $langCode;
-                $translation->content = 'Lorem ipsum_' . $langCode;
+                $translation->description = 'Lorem ipsum_' . $langCode;
                 $translation->alt = 'Lorem ipsum_' . $langCode;
                 $translation->slug = 'Lorem ipsum_' . $langCode;
                 $translation->locale = $langCode;

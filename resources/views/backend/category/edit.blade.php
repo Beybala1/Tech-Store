@@ -8,7 +8,7 @@
 
 <div class="card mb-4">
     <div class="card-header d-flex justify-content-between align-items-center">
-        <h3 class="mb-0">@lang('messages.category') @lang('messages.create')</h3>
+        <h3 class="mb-0">@lang('messages.category') @lang('messages.editData')</h3>
     </div>
     <div class="card-body">
         @if ($errors->any())

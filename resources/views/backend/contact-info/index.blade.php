@@ -27,7 +27,7 @@
                     @foreach ($contactInfos as $i => $contactInfo)
                         <tr>
                             <td>{{ $i += 1 }}</td>
-                            <td>{{ $contactInfo->content }}</td>
+                            <td>{{ $contactInfo->description }}</td>
                             <td>{{ $contactInfo->created_at }}</td>
                             <td>
                                 <form action="{{ route('contact-info.destroy', $contactInfo->id) }}" method="post">

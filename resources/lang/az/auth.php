@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'failed' => 'İstifadəçi adı və ya şifrə səhvdir',
+    'failed' => 'Email və ya şifrə səhvdir',
     'throttle' => ':seconds saniyə ərzində yenidən cəhd edin',
     'password' => 'Daxil edilən parol yanlışdır.',
 ];

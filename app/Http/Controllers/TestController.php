@@ -3,46 +3,39 @@
 namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
+use App\Models\Company;
+use App\Models\ContactInfo;
+use Illuminate\Http\Request;
 use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Support\Facades\Auth;
 use Exception;
 use App\Models\User;
 class TestController extends Controller
 {
-    public function redirectToGoogle()
+    public function index()
     {
-        return Socialite::driver('google')->redirect();
+        $companies = Company::get();
+        return view("test",get_defined_vars());
+    }
+    public function store(Request $request)
+    {
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+            'phone_numbers.*' => 'required|string', // Allow validation for an array of phone numbers
+            'addresses.*' => 'required|string', // Allow validation for an array of phone numbers
+            // Add other validation rules as needed.
+        ]);
+
+        // Create a new Company instance and save it to the database
+        $company = Company::create([
+            'name' => $validatedData['name'],
+            'phone_numbers' => $validatedData['phone_numbers'],
+            'addresses' => $validatedData['addresses'],
+            // Add other fields as needed.
+        ]);
+
+        // Redirect the user or show a success message
+        // ...
     }
 
-    public function handleGoogleCallback()
-    {
-        // try {
-            //create a user using socialite driver google
-            $user = Socialite::driver('google')->user();
-            // if the user exits, use that user and login
-            $finduser = User::where('google_id', $user->id)->first();
-            if ($finduser) {
-                //if the user exists, login and show dashboard
-                Auth::login($finduser);
-                return redirect('/dashboard');
-            } else {
-                //user is not yet created, so create first
-                $newUser = User::create([
-                    'name' => $user->name,
-                    'email' => $user->email,
-                    'google_id' => $user->id,
-                    'password' => encrypt('')
-                ]);
-     
-                $newUser->save();
-                //login as the new user
-                Auth::login($newUser);
-                // go to the dashboard
-                return redirect('/dashboard');
-            }
-            //catch exceptions
-        // } catch (Exception $e) {
-        //     dd($e->getMessage());
-        // }
-    }
 }

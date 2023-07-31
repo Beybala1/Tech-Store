@@ -7,15 +7,20 @@ use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
 
 class Blog extends Model implements TranslatableContract
-{ 
+{
     use Translatable;
 
     protected $guarded = [];
 
-    public $translatedAttributes = [
+    public array $translatedAttributes = [
         'title',
-        'content',
+        'description',
         'alt',
         'slug',
     ];
+
+    public function blogTranslations()
+    {
+        return $this->hasMany(BlogTranslation::class);
+    }
 }

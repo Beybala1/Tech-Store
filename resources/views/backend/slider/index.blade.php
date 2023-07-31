@@ -35,7 +35,7 @@
                                     <div class="avatar-wrapper">
                                         <div class="avatar avatar-sm me-3">
                                             <span
-                                                class="avatar-initial rounded-circle 
+                                                class="avatar-initial rounded-circle
                                             bg-label-dark">
                                                 <img src="{{ asset($slider->image) }}">
                                             </span>
@@ -44,7 +44,7 @@
                                 </div>
                             </td>
                             <td>{{ $slider->title }}</td>
-                            <td>{{ $slider->content }}</td>
+                            <td>{{ $slider->description }}</td>
                             <td>{{ $slider->alt }}</td>
                             <td>{{ $slider->created_at }}</td>
                             <td>

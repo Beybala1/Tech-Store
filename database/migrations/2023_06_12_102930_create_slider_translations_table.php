@@ -17,7 +17,7 @@ return new class extends Migration
                 ->constrained('sliders')
                 ->onDelete('cascade');
             $table->string('title');
-            $table->text('content');
+            $table->longText('description');
             $table->string('alt')->nullable();
             $table->string('locale')->index();
             $table->unique(['slider_id', 'locale']);

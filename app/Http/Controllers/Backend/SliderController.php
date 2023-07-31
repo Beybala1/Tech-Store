@@ -30,7 +30,7 @@ class SliderController extends Controller
                 foreach (lang() as $language) {
                     $translation = new SliderTranslation();
                     $translation->title = $request->title[$language->code];
-                    $translation->content = $request->content[$language->code];
+                    $translation->description = $request->description[$language->code];
                     $translation->alt = $request->alt[$language->code];
                     $translation->locale = $language->code;
                     $translation->slider_id = $slider->id;
@@ -61,7 +61,7 @@ class SliderController extends Controller
             foreach (lang() as $language) {
                 $translationData = [
                     'title' => $request->title[$language->code],
-                    'content' => $request->content[$language->code],
+                    'description' => $request->description[$language->code],
                     'alt' => $request->alt[$language->code],
                     'locale' => $language->code,
                 ];

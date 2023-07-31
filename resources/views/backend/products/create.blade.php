@@ -64,7 +64,7 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="basic-default-content">@lang('messages.content')</label>
-                            <textarea name="content[{{ $language->code }}]" class="form-control" cols="20" rows="7" required>{{ old('content') }}</textarea>
+                            <textarea name="description[{{ $language->code }}]" class="form-control" cols="20" rows="7" required>{{ old('description') }}</textarea>
                         </div>
                         <div class="mb-3">
                             <label class="form-label" for="basic-default-alt">@lang('messages.alt')</label>

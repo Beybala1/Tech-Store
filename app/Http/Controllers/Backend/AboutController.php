@@ -33,7 +33,7 @@ class AboutController extends Controller
             foreach (lang() as $language) {
                 $translationData = [
                     'title' => $request->title[$language->code],
-                    'content' => $request->content[$language->code],
+                    'description' => $request->description[$language->code],
                     'alt' => $request->alt[$language->code],
                     'locale' => $language->code,
                 ];

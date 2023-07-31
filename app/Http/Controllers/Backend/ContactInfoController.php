@@ -23,7 +23,7 @@ class ContactInfoController extends Controller
     {
         try {
             $contactInfo = ContactInfo::create([
-                'content' => $request->content,
+                'description' => $request->description,
             ]);
             return to_route('contact-info.index')->with('success', __('messages.success'));
         } catch (\Exception $eh) {
@@ -40,7 +40,7 @@ class ContactInfoController extends Controller
     {
         try {
             $contactInfo->update([
-                'content'=>$request->content,
+                'description'=>$request->description,
             ]);
             return to_route('contact-info.index')->with('success', __('messages.success'));
         } catch (\Exception $eh) {

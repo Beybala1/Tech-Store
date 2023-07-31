@@ -29,7 +29,7 @@
                         <tr>
                             <td>{{ $i += 1 }}</td>
                             <td>{{ $faq->title }}</td>
-                            <td>{{ $faq->content }}</td>
+                            <td>{{ $faq->description }}</td>
                             <td>{{ $faq->created_at }}</td>
                             <td>
                                 <form action="{{ route('faq.destroy', $faq->id) }}" method="post">

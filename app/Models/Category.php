@@ -7,7 +7,7 @@ use Astrotomic\Translatable\Contracts\Translatable as TranslatableContract;
 use Astrotomic\Translatable\Translatable;
 
 class Category extends Model implements TranslatableContract
-{ 
+{
     use Translatable;
 
     protected $guarded = [];
@@ -17,8 +17,14 @@ class Category extends Model implements TranslatableContract
         'slug',
     ];
 
-     public function products()
+    public function products()
     {
         return $this->hasMany(Product::class);
     }
+
+    public function altCategories()
+    {
+        return $this->hasMany(AltCategory::class);
+    }
+
 }
