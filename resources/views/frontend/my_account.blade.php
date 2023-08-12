@@ -29,31 +29,31 @@
                                 <div class="customer-login-form">
                                     <span class="or-text">@lang("messages.or")</span>
                                     <div class="col2-set" id="customer_login">
-{{--                                        <div class="col-1">--}}
-{{--                                            <h2>@lang("messages.login")</h2>--}}
-{{--                                            <form action="{{route("login")}}" method="post" class="login">--}}
-{{--                                                @csrf--}}
-{{--                                                <p class="before-login-text">@lang("messages.loginYourAccount")</p>--}}
-{{--                                                <p class="form-row form-row-wide">--}}
-{{--                                                    <label for="email">@lang("messages.email")<span class="required">*</span></label>--}}
-{{--                                                    <input type="email" name="email" value="{{old("email")}}" class="input-text" id="email" required/>--}}
-{{--                                                </p>--}}
+                                        <div class="col-1">
+                                            <h2>@lang("messages.login")</h2>
+                                            <form action="{{route("login")}}" method="post" class="login">
+                                                @csrf
+                                                <p class="before-login-text">@lang("messages.loginYourAccount")</p>
+                                                <p class="form-row form-row-wide">
+                                                    <label for="email">@lang("messages.email")<span class="required">*</span></label>
+                                                    <input type="email" name="email" value="{{old("email")}}" class="input-text" id="email" required/>
+                                                </p>
 
-{{--                                                <p class="form-row form-row-wide">--}}
-{{--                                                    <label for="password">@lang("messages.password")<span class="required">*</span></label>--}}
-{{--                                                    <input type="password" name="password" class="input-text" id="password" required/>--}}
-{{--                                                </p>--}}
-{{--                                                <p class="form-row">--}}
-{{--                                                    <input class="button" type="submit" value="@lang("messages.login")" name="login">--}}
-{{--                                                    <label for="rememberme" class="inline">--}}
-{{--                                                            <input type="checkbox" name="remember" id="rememberme"  /> @lang("messages.rememberMe")--}}
-{{--                                                    </label>--}}
-{{--                                                </p>--}}
-{{--                                                <p class="lost_password">--}}
-{{--                                                    <a href="login-and-register.html">@lang("messages.forgetYourPassword")</a>--}}
-{{--                                                </p>--}}
-{{--                                            </form>--}}
-{{--                                        </div>--}}
+                                                <p class="form-row form-row-wide">
+                                                    <label for="password">@lang("messages.password")<span class="required">*</span></label>
+                                                    <input type="password" name="password" class="input-text" id="password" required/>
+                                                </p>
+                                                <p class="form-row">
+                                                    <input class="button" type="submit" value="@lang("messages.login")" name="login">
+                                                    <label for="rememberme" class="inline">
+                                                            <input type="checkbox" name="remember" id="rememberme"  /> @lang("messages.rememberMe")
+                                                    </label>
+                                                </p>
+                                                <p class="lost_password">
+                                                    <a href="login-and-register.html">@lang("messages.forgetYourPassword")</a>
+                                                </p>
+                                            </form>
+                                        </div>
                                         <div class="col-2">
                                             <h2>@lang("messages.register")</h2>
                                             <form action="{{route("register")}}" method="post" class="register">

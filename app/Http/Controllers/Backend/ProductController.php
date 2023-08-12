@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\AltCategory;
+use App\Models\AltSubCategory;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\ProductTranslation;
@@ -12,13 +14,15 @@ class ProductController extends Controller
 {
     public function index()
     {
-        $products = Product::with('category')->latest()->get();
+        $products = Product::with('category', 'altCategory')->latest()->get();
         return view('backend.products.index', get_defined_vars());
     }
 
     public function create()
     {
         $categories = Category::all();
+        $altCategories = AltCategory::all();
+        $altSubCategories = AltSubCategory::all();
         return view('backend.products.create',get_defined_vars());
     }
 
@@ -29,6 +33,9 @@ class ProductController extends Controller
                 $product = new Product();
                 $product->image = upload('products', $request->file('image'));
                 $product->category_id = $request->category_id;
+                $product->alt_category_id = $request->alt_category_id;
+                $product->alt_sub_category_id = $request->alt_sub_category_id;
+                $product->price = $request->price;
                 $product->save();
                 foreach (lang() as $language) {
                     $translation = new ProductTranslation();
@@ -50,6 +57,8 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         $categories = Category::latest()->get();
+        $altCategories = AltCategory::latest()->get();
+        $altSubCategories = AltSubCategory::latest()->get();
         return view('backend.products.edit', get_defined_vars());
     }
 
@@ -64,6 +73,7 @@ class ProductController extends Controller
                 $product->image = upload('products', $request->file('image'));
             }
             $product->category_id = $request->category_id;
+            $product->price = $request->price;
             foreach (lang() as $language) {
                 $translationData = [
                     'title' => $request->title[$language->code],

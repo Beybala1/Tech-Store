@@ -17,14 +17,8 @@ class Category extends Model implements TranslatableContract
         'slug',
     ];
 
-    public function products()
-    {
-        return $this->hasMany(Product::class);
-    }
-
     public function altCategories()
     {
         return $this->hasMany(AltCategory::class);
     }
-
 }

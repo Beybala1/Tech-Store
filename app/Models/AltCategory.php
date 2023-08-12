@@ -21,4 +21,14 @@ class AltCategory extends Model implements TranslatableContract
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function altSubCategories()
+    {
+        return $this->hasMany(AltSubCategory::class);
+    }
+
+    public function altCategoryTranslations()
+    {
+        return $this->hasMany(AltCategoryTranslation::class);
+    }
 }

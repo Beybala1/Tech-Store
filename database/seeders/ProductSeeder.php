@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\AltCategory;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Product;
@@ -18,6 +19,7 @@ class ProductSeeder extends Seeder
             $product = new Product();
             $product->image = 'backend/images/image.jpg';
             $product->category_id = $categoryId;
+            $product->alt_category_id = $categoryId;
             $product->save();
 
             foreach (lang() as $lang) {

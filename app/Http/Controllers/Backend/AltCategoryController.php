@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\AltCategory;
 use App\Models\AltCategoryTranslation;
+use App\Models\AltSubCategory;
 use Illuminate\Http\Request;
 use App\Models\Category;
 use App\Models\CategoryTranslation;
@@ -21,6 +22,11 @@ class AltCategoryController extends Controller
     {
         $categories = Category::latest()->get();
         return view('backend.alt-category.create',get_defined_vars());
+    }
+    public function show(AltCategory $altCategory)
+    {
+        $altSubCategories = AltSubCategory::where('alt_category_id',$altCategory->id)->with("altCategory")->latest()->get();
+        return view('backend.alt-sub-category.index', get_defined_vars());
     }
 
     public function store(Request $request)

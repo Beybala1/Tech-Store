@@ -18,9 +18,13 @@ class Product extends Model implements TranslatableContract
         'alt',
         'slug',
     ];
-
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function altCategory()
+    {
+        return $this->belongsTo(AltCategory::class);
     }
 }

@@ -52,6 +52,29 @@
                         @endforeach
                     </select>
                 </div>
+                <div class="mb-3">
+                    <label>@lang('messages.alt-category') <span class="text-danger">*</span></label>
+                    <select name="alt_category_id" class="form-control" required>
+                        <option value="">@lang('messages.choose-alt-category')</option>
+                        @foreach($altCategories as $altCategory)
+                            <option value="{{ $altCategory->id }}">{{ $altCategory->title }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label>@lang('messages.alt-sub-category') <span class="text-danger">*</span></label>
+                    <select name="alt_sub_category_id" class="form-control" required>
+                        <option value="">@lang('messages.choose-alt-sub-category')</option>
+                        @foreach($altSubCategories as $altSubCategory)
+                            <option value="{{ $altSubCategory->id }}">{{ $altSubCategory->title }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label" for="basic-default-price">@lang('messages.price')</label>
+                    <input type="text" name="price" value="{{ old('title') }}"
+                           class="form-control" id="basic-default-price" placeholder="@lang('messages.price')" required>
+                </div>
                 @foreach (lang() as $language)
                     <div class="tab-pane fade {{ $language->code === app()->getLocale() ? 'show active' : '' }}"
                         id="pills-{{ $language->code }}" role="tabpanel"

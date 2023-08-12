@@ -6,67 +6,26 @@
                 <ul id="menu-vertical-menu" class="dropdown-menu yamm departments-menu-dropdown">
                     @foreach($categories as $category)
                     <li class="yamm-tfw menu-item menu-item-has-children animate-dropdown menu-item-2590 dropdown">
-                        <a title="Car, Motorbike &amp; Industrial" href="product-category.html" data-toggle="dropdown"
+                        <a title="{{$category->title}}" href="product-category.html" data-toggle="dropdown"
                            class="dropdown-toggle" aria-haspopup="true">{{$category->title}}</a>
                         <ul role="menu" class=" dropdown-menu">
                             <li class="menu-item animate-dropdown menu-item-object-static_block">
                                 <div class="yamm-content">
-                                    <div class="vc_row row wpb_row vc_row-fluid bg-yamm-content bg-yamm-content-bottom bg-yamm-content-right">
-                                        <div class="wpb_column vc_column_container vc_col-sm-12 col-sm-12">
-                                            <div class="vc_column-inner ">
-                                                <div class="wpb_wrapper">
-                                                    <div class="wpb_single_image wpb_content_element vc_align_left">
-                                                        <figure class="wpb_wrapper vc_figure">
-                                                            <div class="vc_single_image-wrapper   vc_box_border_grey">
-                                                                <img width="540" height="460" src="assets/images/megamenu-2.png"
-                                                                     class="vc_single_image-img attachment-full" alt="megamenu-2"/></div>
-                                                        </figure>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                     <div class="vc_row row wpb_row vc_row-fluid">
-                                    {{--@foreach($categories as $category)
-                                        <div class="wpb_column vc_column_container vc_col-sm-6 col-sm-6">
-                                            <div class="vc_column-inner ">
-                                                <div class="wpb_wrapper">
-                                                    <div class="wpb_text_column wpb_content_element ">
-                                                        <div class="wpb_wrapper">
-                                                            <ul>
-                                                                @foreach($category->altCategories as $altCategory)
-                                                                    <li class="nav-title">{{$altCategory->title}}</li>
-                                                                @endforeach
-                                                                <li class="nav-divider"></li>
-                                                                <li>
-                                                                    <a href="#">
-                                                                        <span class="nav-text">All Electronics</span>
-                                                                        <span class="nav-subtext">Discover more products</span>
-                                                                    </a>
-                                                                </li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        @endforeach--}}
-                                        @foreach($categories as $category)
+                                        @foreach($category->altCategories as $altCategory)
                                             <div class="wpb_column vc_column_container vc_col-sm-6 col-sm-6">
                                                 <div class="vc_column-inner ">
                                                     <div class="wpb_wrapper">
                                                         <div class="wpb_text_column wpb_content_element ">
                                                             <div class="wpb_wrapper">
                                                                 <ul>
-                                                                    @foreach($category->altCategories as $altCategory)
-                                                                        <li class="nav-title">
-                                                                            {{$altCategory->title}}
+                                                                    <li class="nav-title">{{$altCategory->title}}</li>
+                                                                    @foreach($altCategory->altSubCategories as $altSubCategory)
+                                                                        <li>
+                                                                            <a href="{{ route('alt-sub-category.show', $altSubCategory->slug) }}">
+                                                                                {{ $altSubCategory->title }}
+                                                                            </a>
                                                                         </li>
-                                                                    @endforeach
-                                                                    @foreach($category->products as $product)
-                                                                            <li>
-                                                                                <a href="#">{{$product->title}}</a>
-                                                                            </li>
                                                                     @endforeach
                                                                 </ul>
                                                             </div>
@@ -75,28 +34,12 @@
                                                 </div>
                                             </div>
                                         @endforeach
-                                        {{--<div class="wpb_column vc_column_container vc_col-sm-6 col-sm-6">
-                                            <div class="vc_column-inner ">
-                                                <div class="wpb_wrapper">
-                                                    <div class="wpb_text_column wpb_content_element ">
-                                                        <div class="wpb_wrapper">
-                                                            <ul>
-                                                                <li class="nav-title">Office &amp; Stationery</li>
-                                                                <li><a href="#">All Office &amp; Stationery</a></li>
-                                                                <li><a href="#">Pens &amp; Writing</a></li>
-                                                            </ul>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>--}}
                                     </div>
                                 </div>
                             </li>
                         </ul>
                     </li>
                     @endforeach
-                    <li class="menu-item animate-dropdown"><a title="Printers &amp; Ink" href="product-category.html">Printers &#038; Ink</a></li>
                 </ul>
             </li>
         </ul>

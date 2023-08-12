@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\DashboardAdmindController;
 use App\Http\Controllers\Admin\UserRoleAdminController;
 use App\Http\Controllers\Backend\AltCategoryController;
+use App\Http\Controllers\Backend\AltSubCategoryController;
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\CategoryController;
 use App\Http\Controllers\Backend\ProductController;
@@ -25,7 +26,7 @@ use App\Http\Controllers\TestController;
 
 Route::get('auth/google', [TestController::class, 'redirectToGoogle']);
 Route::get('auth/google/callback', [TestController::class, 'handleGoogleCallback']);
-Route::resource("test", TestController::class);
+//Route::resource("test", TestController::class);
 
 Route::group(['prefix' =>LaravelLocalization::setLocale().'/admin', 'middleware' => ['auth', 'isAdmin']], function () {
 //    Route::get('/dil', function () {
@@ -37,7 +38,8 @@ Route::group(['prefix' =>LaravelLocalization::setLocale().'/admin', 'middleware'
         ->except(['edit', 'update'])->names('user-and-roles');
     Route::resource('/slider', SliderController::class)->except('show')->names('slider');
     Route::resource('/category', CategoryController::class)->except('show')->names('category');
-    Route::resource('/alt-category', AltCategoryController::class)->except('show')->names('alt-category');
+    Route::resource('/alt-category', AltCategoryController::class)->names('alt-category');
+    Route::resource('/alt-sub-category', AltSubCategoryController::class)->except(['index','show'])->names('alt-sub-category');
     Route::resource('/products', ProductController::class)->except('show')->names('products');
     Route::resource('/service', ServiceController::class)->except('show')->names('service');
     Route::resource('/faq', FaqController::class)->except('show')->names('faq');
@@ -62,6 +64,10 @@ Route::group(['prefix' =>LaravelLocalization::setLocale().'/admin', 'middleware'
 
 Route::group(['prefix' =>LaravelLocalization::setLocale()], function () {
     Route::get('/',[\App\Http\Controllers\Frontend\HomeController::class, 'index'])->name('home.index');
+    Route::get('/product', [\App\Http\Controllers\Frontend\ProductController::class, 'show'])
+        ->name('product.show');
+    Route::get('/category/{slug}/', [\App\Http\Controllers\Frontend\AltSubCategoryController::class, 'show'])
+        ->name('alt-sub-category.show');
     Route::get('/news',[\App\Http\Controllers\Frontend\NewsController::class, 'index'])->name('news.index');
     Route::get('/news/{id}',[\App\Http\Controllers\Frontend\NewsController::class, 'show'])->name('news.show');
     Route::get('/news/show',[\App\Http\Controllers\Frontend\NewsController::class, 'test']);

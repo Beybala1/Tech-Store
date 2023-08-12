@@ -102,7 +102,7 @@ Table of Contents
 63. Comments
 64. Posts
 65. Woocommerce-checkout
-66. Checkout Page 
+66. Checkout Page
 67. Myaccount Page
 68. Cart Page
 69. Order-received Page
@@ -2420,8 +2420,6 @@ article.post {
 /*===================================================================================*/
 .pagination {
   display: block;
-  border-top: 1px solid #eaeaea;
-  padding-top: 1.5625rem;
   text-align: center;
   border-radius: 0;
   clear: both; }

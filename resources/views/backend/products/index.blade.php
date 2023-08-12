@@ -20,7 +20,9 @@
                         <th>#</th>
                         <th>@lang('messages.image')</th>
                         <th>@lang('messages.title')</th>
+                        <th>@lang('messages.price')</th>
                         <th>@lang('messages.category')</th>
+                        <th>@lang('messages.alt-category')</th>
                         <th>@lang('messages.content')</th>
                         <th>@lang('messages.alt')</th>
                         <th>@lang('messages.slug')</th>
@@ -39,15 +41,16 @@
                                             <span
                                                 class="avatar-initial rounded-circle
                                             bg-label-dark">
-                                                <img src="{{ asset($product
-                                                ->image) }}">
+                                                <img src="{{ asset($product->image) }}">
                                             </span>
                                         </div>
                                     </div>
                                 </div>
                             </td>
                             <td>{{ $product->title }}</td>
+                            <td>{{ $product->price }}</td>
                             <td>{{ $product->category->title }}</td>
+                            <td>{{ $product->altCategory->title }}</td>
                             <td>{{ $product->description }}</td>
                             <td>{{ $product->alt }}</td>
                             <td>{{ $product->slug }}</td>

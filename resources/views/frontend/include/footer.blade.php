@@ -30,9 +30,9 @@
                                 <h4 class="widget-title">@lang("messages.category")</h4>
                                 <div class="menu-footer-menu-1-container">
                                     <ul id="menu-footer-menu-1" class="menu">
-                                        @foreach($categories as $category)
+                                        @foreach($category_links as $category_link)
                                             <li class="menu-item">
-                                                <a href="#">{{$category->title}}</a>
+                                                <a href="#">{{$category_link->title}}</a>
                                             </li>
                                         @endforeach
                                     </ul>
@@ -47,9 +47,9 @@
                                 <h4 class="widget-title">&nbsp;</h4>
                                 <div class="menu-footer-menu-2-container">
                                     <ul id="menu-footer-menu-2" class="menu">
-                                        @foreach($categories as $category)
+                                        @foreach($categories as $category_link)
                                             <li class="menu-item">
-                                                <a href="#">{{$category->title}}</a>
+                                                <a href="#">{{$category_link->title}}</a>
                                             </li>
                                         @endforeach
                                     </ul>

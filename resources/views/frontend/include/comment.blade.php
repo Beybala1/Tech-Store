@@ -28,7 +28,6 @@
                                 </a>
                             </div>
                         </div>
-
                     </div><!-- /.comment-body -->
                 </div><!-- /.media -->
             </li><!-- #comment-## -->
@@ -55,16 +54,19 @@
         <form action="{{route("comments.store")}}" method="post" class="comment-form" id="commentform">
             @csrf
             <input type="hidden" name="blog_id" value="{{$news->id}}">
-            <p class="comment-form-author">
-                <label for="author">@lang("messages.userName")<span class="required">*</span></label>
-                <input type="text" name="user_name" value="{{old("user_name")}}"
-                       aria-required="true" maxlength="245" size="30" id="author" required>
-            </p>
-            <p class="comment-form-email">
-                <label for="email">@lang("messages.email") <span class="required">*</span></label>
-                <input type="email" name="email" value="{{old("email")}}"
-                       aria-describedby="email-notes" maxlength="100" size="30" id="email" required>
-            </p>
+            @auth
+            @else
+                <p class="comment-form-author">
+                    <label for="author">@lang("messages.userName")<span class="required">*</span></label>
+                    <input type="text" name="user_name" value="{{old("user_name")}}"
+                           aria-required="true" maxlength="245" size="30" id="author" required>
+                </p>
+                <p class="comment-form-email">
+                    <label for="email">@lang("messages.email") <span class="required">*</span></label>
+                    <input type="email" name="email" value="{{old("email")}}"
+                           aria-describedby="email-notes" maxlength="100" size="30" id="email" required>
+                </p>
+            @endauth
             <p class="comment-form-comment">
                 <label for="comment">@lang("messages.comment")<span class="required">*</span></label>
                 <textarea name="comment" maxlength="65525" rows="8" cols="45"  id="comment" required>{{old("comment")}}</textarea>

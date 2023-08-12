@@ -40,6 +40,10 @@
                                     <div class="dropdown">
                                       <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown"><i class="bx bx-dots-vertical-rounded"></i></button>
                                       <div class="dropdown-menu">
+                                          <a class="dropdown-item" href="{{ route('alt-category.show', $altCategory->id) }}">
+                                              <i class="fa fa-eye me-1"></i>
+                                              @lang('messages.alt-category')
+                                          </a>
                                         <a class="dropdown-item" href="{{ route('alt-category.edit', $altCategory->id) }}">
                                             <i class="bx bx-edit-alt me-1"></i>
                                             @lang('messages.edit')

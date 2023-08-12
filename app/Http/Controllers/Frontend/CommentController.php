@@ -12,11 +12,15 @@ class CommentController extends Controller
     public function store(StoreCommentRequest $request)
     {
         try {
+            //If the user exists, then get the user's name and email, otherwise, enter the name and email himself
+            $user_name = auth()->check() ? auth()->user()->name : $request->user_name;
+            $email = auth()->check() ? auth()->user()->email : $request->email;
+
             Comment::create([
-                'user_name'=>$request->user_name,
-                'email'=>$request->email,
-                'comment'=>$request->comment,
-                'blog_id'=>$request->blog_id,
+                'user_name' => $user_name,
+                'email' => $email,
+                'comment' => $request->comment,
+                'blog_id' => $request->blog_id,
             ]);
             return back()->with('success', __('messages.successComment'));
         } catch (\Exception) {
