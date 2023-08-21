@@ -24,7 +24,8 @@
                             {{$altSubCategory->title}}
                         </h1>
                         <p class="woocommerce-result-count">
-                            Showing {{ $paginatedProducts->firstItem() }}–{{ $paginatedProducts->lastItem() }} of {{ $totalResultsCount }} products.
+                            {{ $totalResultsCount }}-@lang("messages.result")
+                            {{ $paginatedProducts->firstItem() }}–{{ $paginatedProducts->lastItem() }} @lang("messages.showingResult").
                         </p>
                     </header>
                     <div class="shop-control-bar">
@@ -38,37 +39,16 @@
                             <li class="nav-item"><a class="nav-link " data-toggle="tab" title="List View Small"
                                                     href="#list-view-small"><i class="fa fa-th-list"></i></a></li>
                         </ul>
-                        <form class="woocommerce-ordering" method="get">
-                            <select name="orderby" class="orderby">
-                                <option value="menu_order" selected='selected'>Default sorting</option>
-                                <option value="popularity">Sort by popularity</option>
-                                <option value="rating">Sort by average rating</option>
-                                <option value="date">Sort by newness</option>
-                                <option value="price">Sort by price: low to high</option>
-                                <option value="price-desc">Sort by price: high to low</option>
+                        <form action="{{ route('category.sort', $slug) }}" method="get" class="woocommerce-ordering">
+                            @csrf
+                            <select name="orderby" class="orderby" onchange="this.form.submit()">
+                                <option value="latest">@lang("messages.latest")</option>
+                                <option value="name_A_Z">@lang("messages.nameA-Z")</option>
+                                <option value="mostExpensive_to_cheapest">@lang("messages.mostExpensive-cheapest")</option>
+                                <option value="cheapest_to_mostExpensive">@lang("messages.cheapest-mostExpensive")</option>
                             </select>
                         </form>
-                        <form class="form-electro-wc-ppp"><select name="ppp" onchange="this.form.submit()"
-                                class="electro-wc-wppp-select c-select">
-                                <option value="15" selected='selected'>Show 15</option>
-                                <option value="-1">Show All</option>
-                            </select>
-                        </form>
-                        <nav class="electro-advanced-pagination">
-                            <script>
-                                jQuery(document).ready(function ($) {
-                                    $('.form-adv-pagination').on('submit', function () {
-                                        var link = '#',
-                                            goto_page = $('#goto-page').val(),
-                                            new_link = link.replace('%#%', goto_page);
-
-                                        window.location.href = new_link;
-                                        return false;
-                                    });
-                                });
-                            </script>
-                        </nav>
-                        </div>
+                    </div>
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane active" id="grid" aria-expanded="true">
                             <ul class="products columns-3">
@@ -312,13 +292,9 @@
                         </div>
                     </div>
                     <div class="shop-control-bar-bottom">
-                        <form class="form-electro-wc-ppp">
-                            <select class="electro-wc-wppp-select c-select" onchange="this.form.submit()" name="ppp">
-                                <option selected="selected" value="15">Show 15</option>
-                                <option value="-1">Show All</option>
-                            </select>
-                        </form>
-                        <p class="woocommerce-result-count">Showing {{ $paginatedProducts->firstItem() }}–{{ $paginatedProducts->lastItem() }} of {{ $totalResultsCount }} products.
+                        <p class="woocommerce-result-count">
+                            {{ $totalResultsCount }}-@lang("messages.result")
+                            {{ $paginatedProducts->firstItem() }}–{{ $paginatedProducts->lastItem() }} @lang("messages.showingResult").
                         </p>
                         <nav class="woocommerce-pagination">
                             <ul class="page-numbers">

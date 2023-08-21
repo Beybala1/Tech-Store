@@ -68,6 +68,8 @@ Route::group(['prefix' =>LaravelLocalization::setLocale()], function () {
         ->name('product.show');
     Route::get('/category/{slug}/', [\App\Http\Controllers\Frontend\AltSubCategoryController::class, 'show'])
         ->name('category.show');
+    Route::get('/category/{slug}/sort', [\App\Http\Controllers\Frontend\AltSubCategoryController::class, 'sort'])
+        ->name('category.sort');
     Route::get('/news',[\App\Http\Controllers\Frontend\NewsController::class, 'index'])->name('news.index');
     Route::get('/news/{id}',[\App\Http\Controllers\Frontend\NewsController::class, 'show'])->name('news.show');
     Route::get('/news/show',[\App\Http\Controllers\Frontend\NewsController::class, 'test']);
