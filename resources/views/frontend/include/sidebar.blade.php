@@ -22,7 +22,7 @@
                                                                     <li class="nav-title">{{$altCategory->title}}</li>
                                                                     @foreach($altCategory->altSubCategories as $altSubCategory)
                                                                         <li>
-                                                                            <a href="{{ route('alt-sub-category.show', $altSubCategory->slug) }}">
+                                                                            <a href="{{ route('category.show', $altSubCategory->slug) }}">
                                                                                 {{ $altSubCategory->title }}
                                                                             </a>
                                                                         </li>

@@ -11,12 +11,13 @@ class AltSubCategoryController extends Controller
     public function show(string $slug)
     {
         $altSubCategory = AltSubCategory::whereHas('altSubCategoryTranslations', function ($query) use ($slug) {
-                $query->where('slug', $slug);
-            })
+            $query->where('slug', $slug);
+        })
             ->firstOrFail();
 
-        $paginatedProducts = $altSubCategory->products()->paginate(1);
-        $allProductLists = $altSubCategory->products()->get();
+        $paginatedProducts = $altSubCategory->products()->paginate(12); // Display 15 products per page
+        $totalResultsCount = count($altSubCategory->products); // Get total count of products
+
         return view("frontend.products", get_defined_vars());
     }
 }
