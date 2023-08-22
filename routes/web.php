@@ -37,6 +37,7 @@ Route::group(['prefix' =>LaravelLocalization::setLocale().'/admin', 'middleware'
     Route::resource('/user-and-roles', UserRoleAdminController::class)
         ->except(['edit', 'update'])->names('user-and-roles');
     Route::resource('/slider', SliderController::class)->except('show')->names('slider');
+    Route::resource('/brand', \App\Http\Controllers\Backend\BrandController::class)->except('show')->names('brand');
     Route::resource('/category', CategoryController::class)->except('show')->names('category');
     Route::resource('/alt-category', AltCategoryController::class)->names('alt-category');
     Route::resource('/alt-sub-category', AltSubCategoryController::class)->except(['index','show'])->names('alt-sub-category');

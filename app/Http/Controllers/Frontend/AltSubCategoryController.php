@@ -11,6 +11,7 @@ class AltSubCategoryController extends Controller
 {
     public function show(string $slug)
     {
+
         $altSubCategory = AltSubCategory::whereHas('altSubCategoryTranslations', function ($query) use ($slug) {
             $query->where('slug', $slug);
         })
@@ -18,6 +19,8 @@ class AltSubCategoryController extends Controller
 
         $paginatedProducts = $altSubCategory->products()->latest()->paginate(12); // Display 15 products per page
         $totalResultsCount = count($altSubCategory->products); // Get total count of products
+
+        $orderBy = '';
 
         return view("frontend.products", get_defined_vars());
     }

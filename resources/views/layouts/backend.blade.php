@@ -109,6 +109,12 @@
                             <div data-i18n="@lang('messages.slider')">@lang('messages.slider')</div>
                         </a>
                     </li>
+                    <li class="menu-item {{ request()->routeIs(['brand.index','brand.create','brand.edit']) ? 'active' : ''}}">
+                        <a href="{{ route('brand.index') }}" class="menu-link">
+                            <i class="menu-icon fas fa-list"></i>
+                            <div data-i18n="@lang('messages.brand')">@lang('messages.brand')</div>
+                        </a>
+                    </li>
                     <li class="menu-item {{ request()->routeIs(['category.index','category.create','category.edit']) ? 'active' : ''}}">
                         <a href="{{ route('category.index') }}" class="menu-link">
                             <i class="menu-icon fas fa-list"></i>
