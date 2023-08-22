@@ -44,11 +44,10 @@ class AltSubCategoryController extends Controller
                 $productsQuery->orderBy(function ($query) use ($altSubCategory) {
                     $query->select('title')
                         ->from('product_translations')
-                        ->whereColumn('product_id', 'products.id')
-                        ->where('locale', app()->getLocale())
+                        ->where('product_id', 'products.id')
                         ->where('alt_sub_category_id', $altSubCategory->id)
-                        ->orderBy('title', 'asc')
-                        ->limit(1);
+                        ->where('locale', app()->getLocale())
+                        ->orderBy('title', 'asc');
                 });
                 break;
             default:

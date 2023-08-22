@@ -25,7 +25,8 @@
                         </h1>
                         <p class="woocommerce-result-count">
                             {{ $totalResultsCount }}-@lang("messages.result")
-                            {{ $paginatedProducts->firstItem() }}–{{ $paginatedProducts->lastItem() }} @lang("messages.showingResult").
+                            {{ $paginatedProducts->firstItem() }}–{{ $paginatedProducts->lastItem() }}
+                            @lang("messages.showingResult").
                         </p>
                     </header>
                     <div class="shop-control-bar">
@@ -42,10 +43,12 @@
                         <form action="{{ route('category.sort', $slug) }}" method="get" class="woocommerce-ordering">
                             @csrf
                             <select name="orderby" class="orderby" onchange="this.form.submit()">
-                                <option value="latest">@lang("messages.latest")</option>
-                                <option value="name_A_Z">@lang("messages.nameA-Z")</option>
-                                <option value="mostExpensive_to_cheapest">@lang("messages.mostExpensive-cheapest")</option>
-                                <option value="cheapest_to_mostExpensive">@lang("messages.cheapest-mostExpensive")</option>
+                                <option value="latest" {{ $orderBy === 'latest' ? 'selected' : '' }}>@lang("messages.latest")</option>
+                                <option value="name_A_Z" {{ $orderBy === 'name_A_Z' ? 'selected' : '' }}>@lang("messages.nameA-Z")</option>
+                                <option value="mostExpensive_to_cheapest" {{ $orderBy === 'mostExpensive_to_cheapest' ? 'selected' : '' }}>
+                                    @lang("messages.mostExpensive-cheapest")</option>
+                                <option value="cheapest_to_mostExpensive" {{ $orderBy === 'cheapest_to_mostExpensive' ? 'selected' : '' }}>
+                                    @lang("messages.cheapest-mostExpensive")</option>
                             </select>
                         </form>
                     </div>
@@ -294,7 +297,8 @@
                     <div class="shop-control-bar-bottom">
                         <p class="woocommerce-result-count">
                             {{ $totalResultsCount }}-@lang("messages.result")
-                            {{ $paginatedProducts->firstItem() }}–{{ $paginatedProducts->lastItem() }} @lang("messages.showingResult").
+                            {{ $paginatedProducts->firstItem() }}–{{ $paginatedProducts->lastItem() }}
+                            @lang("messages.showingResult").
                         </p>
                         <nav class="woocommerce-pagination">
                             <ul class="page-numbers">
@@ -344,8 +348,8 @@
                                 </div>
                                 <div class="price_slider_amount">
                                     <a href="#" class="button">@lang("messages.apply")</a>
-                                    <div style="" class="price_label">@lang("messages.price"): <span class="from">$428</span> — <span
-                                            class="to">$3485</span></div>
+                                    <div style="" class="price_label">@lang("messages.price"): <span
+                                            class="from">$428</span> — <span class="to">$3485</span></div>
                                     <div class="clear"></div>
                                 </div>
                             </div>
