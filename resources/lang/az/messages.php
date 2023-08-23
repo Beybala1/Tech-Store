@@ -12,6 +12,7 @@ return array (
   'beSubscriber' => 'Abunə ol',
   'bestStore' => 'Azərbaycanın ən böyük elektron saytı',
   'blog' => 'Xəbərlər',
+  'brand' => 'Brend',
   'cancel' => 'Ləğv et',
   'categories' => 'Kateqoriyalar',
   'category' => 'Kateqoriya',

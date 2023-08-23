@@ -18,9 +18,7 @@
                 <thead>
                     <tr class="text-nowrap">
                         <th>#</th>
-                        <th>@lang('messages.icon')</th>
-                        <th>@lang('messages.link')</th>
-                        <th>@lang('messages.status')</th>
+                        <th>@lang('messages.brand')</th>
                         <th>@lang('messages.date')</th>
                         <th>@lang('messages.actions')</th>
                     </tr>
@@ -29,18 +27,7 @@
                     @foreach ($brands as $i => $brand)
                         <tr>
                             <td>{{ $i += 1 }}</td>
-                            <td><i class="{{ $brand->icon }}"></i></td>
-                            <td>{{ $brand->link }}</td>
-                            <td>
-                                <div class="form-check form-switch">
-                                    <form action="{{ route('brand-status', $brand->id) }}" method="POST">
-                                        @csrf
-                                        @method('PUT')
-                                        <input type="checkbox" name="status" {{ $brand->status == 1 ? 'checked' : '' }}
-                                            class="form-check-input p-3" id="flexSwitchCheckDefault" onchange="this.form.submit()">
-                                    </form>
-                                </div>
-                            </td>
+                            <td>{{ $brand->title }}</td>
                             <td>{{ $brand->created_at }}</td>
                             <td>
                                 <form action="{{ route('brand.destroy', $brand->id) }}" method="post">

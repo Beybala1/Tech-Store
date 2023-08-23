@@ -11,6 +11,7 @@ return array (
   'awareNews' => 'Aware news',
   'bestStore' => 'The largest electronic site of Azerbaijan',
   'blog' => 'News',
+  'brand' => 'Brand',
   'cancel' => 'Cancel',
   'categories' => 'Categories',
   'category' => 'Category',

@@ -3,65 +3,57 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\StoreBrandRequest;
-use App\Http\Requests\UpdateBrandRequest;
 use App\Models\Brand;
+use Illuminate\Http\Request;
 
 class BrandController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
     public function index()
     {
-        //
+        $brands = Brand::latest()->get();
+        return view('backend.brand.index', get_defined_vars());
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
     public function create()
     {
-        //
+        return view('backend.brand.create');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(StoreBrandRequest $request)
+    public function store(Request $request)
     {
-        //
+        try {
+            Brand::create([
+                'title' => $request->title,
+            ]);
+
+            return to_route('brand.index')->with('success', __('messages.success'));
+        } catch (\Exception $eh) {
+            return back()->with('warning', __('messages.fail'));
+        }
     }
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(Brand $brand)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
     public function edit(Brand $brand)
     {
-        //
+        return view('backend.brand.edit', get_defined_vars());
     }
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(UpdateBrandRequest $request, Brand $brand)
+    public function update(Request $request, Brand $brand)
     {
-        //
+        try {
+            $brand->update([
+                'title'=>$request->title
+            ]);
+
+            return to_route('brand.index')->with('success', __('messages.success'));
+        } catch (\Exception $eh) {
+            return back()->with('warning', __('messages.fail'));
+        }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     */
+
     public function destroy(Brand $brand)
     {
-        //
+        $brand->delete();
+        return to_route('brand.index')->with('success', __('messages.success'));
     }
 }

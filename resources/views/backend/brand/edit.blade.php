@@ -24,13 +24,9 @@
             @csrf
             @method('PUT')
                 <div class="mb-3">
-                    <label class="form-label" for="basic-default-icon">@lang('messages.icon')</label>
-                    <input type="text" name="icon" value="{{ $brand->icon }}" class="form-control"
-                    id="basic-default-icon" placeholder="@lang('messages.icon')" required>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="basic-default-link">@lang('messages.link')</label>
-                    <textarea name="link" class="form-control" cols="20" rows="7" required>{{ $brand->link }}</textarea>
+                    <label class="form-label" for="basic-default-title">@lang('messages.brand')</label>
+                    <input type="text" name="title" value="{{ $brand->title }}" class="form-control"
+                    id="basic-default-title" placeholder="@lang('messages.brand')" required>
                 </div>
                 <button type="submit" class="btn btn-primary me-sm-3 me-1">@lang('messages.store')</button>
                 <a href="{{ route('brand.index') }}" class="btn btn-label-secondary">@lang('messages.cancel')</a>

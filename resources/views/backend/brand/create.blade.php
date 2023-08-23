@@ -20,16 +20,12 @@
             </ul>
         </div>
         @endif
-        <form action="{{ route('brand.store') }}" method="post" enctype="multipart/form-data">
+        <form action="{{ route('brand.store') }}" method="post">
             @csrf
             <div class="mb-3">
-                <label class="form-label" for="basic-default-icon">@lang('messages.icon')</label>
-                <input type="text" name="icon" value="{{ old('icon') }}" class="form-control"
-                id="basic-default-icon" placeholder="@lang('messages.icon')" required>
-            </div>
-            <div class="mb-3">
-                <label class="form-label" for="basic-default-link">@lang('messages.link')</label>
-                <textarea name="link" class="form-control" cols="20" rows="7" required>{{ old('link') }}</textarea>
+                <label class="form-label" for="basic-default-title">@lang('messages.brand')</label>
+                <input type="text" name="title" value="{{ old('title') }}" class="form-control"
+                id="basic-default-title" placeholder="@lang('messages.title')" required>
             </div>
             <button type="submit" class="btn btn-primary me-sm-3 me-1">@lang('messages.store')</button>
             <a href="{{ route('brand.index') }}" class="btn btn-label-secondary">@lang('messages.cancel')</a>
